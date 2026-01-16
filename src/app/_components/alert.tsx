@@ -29,12 +29,12 @@ const Alert = ({ preview }: Props) => {
             </>
           ) : (
             <>
-              The source code for this blog is{" "}
+              Welcome to Punjipati Finance.{" "}
               <a
-                href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
+                href="#"
                 className="underline hover:text-blue-600 duration-200 transition-colors"
               >
-                available on GitHub
+                Learn more about us
               </a>
               .
             </>

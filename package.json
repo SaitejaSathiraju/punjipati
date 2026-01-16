@@ -1,19 +1,27 @@
 {
+  "name": "punjipati-finance",
+  "version": "1.0.0",
   "private": true,
+  "description": "Finance content platform built with Next.js",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.90.1",
     "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "framer-motion": "^12.26.2",
     "gray-matter": "^4.0.3",
+    "motion": "^12.26.2",
     "next": "latest",
     "react": "^19",
     "react-dom": "^19",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.8",

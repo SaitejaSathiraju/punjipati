@@ -8,10 +8,19 @@ import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
+import { StructuredData } from "@/app/_components/structured-data";
+import { Breadcrumbs } from "@/app/_components/breadcrumbs";
 
 export default async function Post(props: Params) {
   const params = await props.params;
-  const post = getPostBySlug(params.slug);
+  const slug = params.slug;
+  let post;
+  
+  try {
+    post = await getPostBySlug(slug);
+  } catch (error) {
+    return notFound();
+  }
 
   if (!post) {
     return notFound();
@@ -19,22 +28,64 @@ export default async function Post(props: Params) {
 
   const content = await markdownToHtml(post.content || "");
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+  const fullUrl = `${baseUrl}/posts/${slug}`;
+
   return (
-    <main>
-      <Alert preview={post.preview} />
-      <Container>
-        <Header />
-        <article className="mb-32">
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-            author={post.author}
+    <>
+      <StructuredData post={post} type="article" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": baseUrl
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Articles",
+                "item": `${baseUrl}/`
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.title,
+                "item": fullUrl
+              }
+            ]
+          })
+        }}
+      />
+      <main>
+        <Alert preview={post.preview} />
+        <Container>
+          <Header />
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Articles", href: "/" },
+              { label: post.title },
+            ]}
           />
-          <PostBody content={content} />
-        </article>
-      </Container>
-    </main>
+          <article className="mb-32" itemScope itemType="https://schema.org/Article">
+            <PostHeader
+              title={post.title}
+              coverImage={post.coverImage}
+              date={post.date}
+              author={post.author}
+            />
+            <PostBody content={content} />
+          </article>
+        </Container>
+      </main>
+    </>
   );
 }
 
@@ -46,25 +97,101 @@ type Params = {
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
   const params = await props.params;
-  const post = getPostBySlug(params.slug);
+  const slug = params.slug;
+  let post;
+  
+  try {
+    post = await getPostBySlug(slug);
+  } catch (error) {
+    return notFound();
+  }
 
   if (!post) {
     return notFound();
   }
 
-  const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+  const title = post.title;
+  const description = post.excerpt;
+  const url = `${baseUrl}/posts/${slug}`;
+  const imageUrl = post.ogImage?.url || post.coverImage;
+  const publishedTime = new Date(post.date).toISOString();
+  const modifiedTime = new Date(post.date).toISOString();
+
+  // Extract keywords from title and content
+  const titleWords = title.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  const keywords = [
+    'finance',
+    'investment',
+    'market analysis',
+    'financial news',
+    'personal finance',
+    'stock market',
+    'trading',
+    'economics',
+    ...titleWords
+  ];
 
   return {
-    title,
+    title: `${title} | Punjipati Finance`,
+    description,
+    keywords,
+    authors: [{ name: post.author.name }],
+    creator: 'Punjipati Finance',
+    publisher: 'Punjipati Finance',
+    category: 'Finance',
+    classification: 'Finance News and Analysis',
     openGraph: {
+      type: 'article',
       title,
-      images: [post.ogImage.url],
+      description,
+      url,
+      siteName: 'Punjipati Finance',
+      locale: 'en_US',
+      publishedTime,
+      modifiedTime,
+      authors: [post.author.name],
+      images: [{
+        url: imageUrl,
+        width: 1200,
+        height: 630,
+        alt: title,
+      }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [imageUrl],
+      creator: '@punjipati',
+      site: '@punjipati',
+    },
+    alternates: {
+      canonical: url,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    other: {
+      'article:published_time': publishedTime,
+      'article:modified_time': modifiedTime,
+      'article:author': post.author.name,
+      'article:section': 'Finance',
+      'article:tag': keywords.join(', '),
     },
   };
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   return posts.map((post) => ({
     slug: post.slug,

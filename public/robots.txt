@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /posts/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /admin-secure-punjipati-2024/
+
+# Sitemap
+Sitemap: https://punjipati.com/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+Crawl-delay: 1
+
