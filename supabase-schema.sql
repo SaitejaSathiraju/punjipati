@@ -133,3 +133,5 @@ GRANT SELECT ON latest_posts TO anon, authenticated;
 GRANT ALL ON posts TO authenticated;
 
 
+
+

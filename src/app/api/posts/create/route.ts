@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { revalidatePath } from "next/cache";
 
 export async function POST(request: NextRequest) {
   try {
@@ -84,6 +85,13 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Revalidate pages to show new content immediately
+    revalidatePath("/");
+    revalidatePath("/news");
+    revalidatePath("/case-study");
+    revalidatePath("/sitemap.xml");
+    revalidatePath(`/posts/${slug}`);
 
     return NextResponse.json(
       {

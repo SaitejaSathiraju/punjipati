@@ -11,6 +11,10 @@ import { PostHeader } from "@/app/_components/post-header";
 import { StructuredData } from "@/app/_components/structured-data";
 import { Breadcrumbs } from "@/app/_components/breadcrumbs";
 
+// Make this page dynamic to fetch fresh data from Supabase
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Post(props: Params) {
   const params = await props.params;
   const slug = params.slug;
@@ -114,13 +118,22 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   const title = post.title;
   const description = post.excerpt;
   const url = `${baseUrl}/posts/${slug}`;
-  const imageUrl = post.ogImage?.url || post.coverImage;
+  const imageUrl = (post.ogImage?.url || post.coverImage)?.startsWith('http')
+    ? (post.ogImage?.url || post.coverImage)
+    : `${baseUrl}${post.ogImage?.url || post.coverImage}`;
   const publishedTime = new Date(post.date).toISOString();
   const modifiedTime = new Date(post.date).toISOString();
 
   // Extract keywords from title and content
   const titleWords = title.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  const categoryKeywords = post.category === 'case-study' 
+    ? ['case study', 'investment strategies', 'portfolio analysis', 'risk management']
+    : post.category === 'news'
+    ? ['finance news', 'market updates', 'economic news', 'financial news']
+    : ['finance', 'investment', 'market analysis'];
+  
   const keywords = [
+    ...categoryKeywords,
     'finance',
     'investment',
     'market analysis',
@@ -139,8 +152,8 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     authors: [{ name: post.author.name }],
     creator: 'Punjipati Finance',
     publisher: 'Punjipati Finance',
-    category: 'Finance',
-    classification: 'Finance News and Analysis',
+    category: post.category === 'case-study' ? 'Case Study' : post.category === 'news' ? 'News' : 'Finance',
+    classification: post.category === 'case-study' ? 'Finance Case Studies' : post.category === 'news' ? 'Finance News' : 'Finance News and Analysis',
     openGraph: {
       type: 'article',
       title,
@@ -184,8 +197,9 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       'article:published_time': publishedTime,
       'article:modified_time': modifiedTime,
       'article:author': post.author.name,
-      'article:section': 'Finance',
+      'article:section': post.category === 'case-study' ? 'Case Study' : post.category === 'news' ? 'News' : 'Finance',
       'article:tag': keywords.join(', '),
+      'article:category': post.category || 'Finance',
     },
   };
 }

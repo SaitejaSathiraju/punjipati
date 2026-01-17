@@ -9,9 +9,13 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
   if (type === 'article' && post) {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
     
-    // Determine article type based on content/category
-    const articleType = post.title.toLowerCase().includes('case study') 
-      ? 'CaseStudy' 
+    // Determine article type based on category
+    const articleType = post.category === 'case-study'
+      ? 'CaseStudy'
+      : post.category === 'news'
+      ? 'NewsArticle'
+      : post.title.toLowerCase().includes('case study')
+      ? 'CaseStudy'
       : post.title.toLowerCase().includes('news') || post.title.toLowerCase().includes('market')
       ? 'NewsArticle'
       : 'Article';
@@ -38,9 +42,12 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
       "image": [
         {
           "@type": "ImageObject",
-          "url": post.ogImage?.url || post.coverImage,
+          "url": post.ogImage?.url?.startsWith('http') 
+            ? post.ogImage.url 
+            : `${baseUrl}${post.ogImage?.url || post.coverImage}`,
           "width": 1200,
-          "height": 630
+          "height": 630,
+          "caption": post.title
         }
       ],
       "datePublished": post.date,
@@ -66,11 +73,12 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
         "@type": "WebPage",
         "@id": `${baseUrl}/posts/${post.slug}`
       },
-      "articleSection": "Finance",
+      "articleSection": post.category === 'case-study' ? 'Case Study' : post.category === 'news' ? 'News' : 'Finance',
       "keywords": keywords,
       "inLanguage": "en-US",
       "wordCount": post.content?.split(/\s+/).length || 0,
-      "timeRequired": `PT${Math.ceil((post.content?.split(/\s+/).length || 0) / 200)}M`
+      "timeRequired": `PT${Math.ceil((post.content?.split(/\s+/).length || 0) / 200)}M`,
+      "category": post.category || 'Finance'
     };
 
     return (

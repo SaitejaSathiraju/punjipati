@@ -26,12 +26,14 @@ export async function POST(request: NextRequest) {
     } else {
       // Revalidate all important paths
       revalidatePath("/");
+      revalidatePath("/news");
+      revalidatePath("/case-study");
       revalidatePath("/sitemap.xml");
       revalidatePath("/posts/[slug]", "page");
       
       return NextResponse.json({
         revalidated: true,
-        paths: ["/", "/sitemap.xml", "/posts/[slug]"],
+        paths: ["/", "/news", "/case-study", "/sitemap.xml", "/posts/[slug]"],
         now: Date.now(),
       });
     }

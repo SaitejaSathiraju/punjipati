@@ -19,15 +19,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: '/',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
     siteName: 'Punjipati Finance',
     title: 'Punjipati - Finance Insights & Analysis',
     description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights.',
+    images: [{
+      url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/assets/blog/preview/cover.jpg`,
+      width: 1200,
+      height: 630,
+      alt: 'Punjipati Finance - Finance Insights & Analysis',
+    }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Punjipati - Finance Insights & Analysis',
     description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights.',
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/assets/blog/preview/cover.jpg`],
+    creator: '@punjipati',
+    site: '@punjipati',
   },
   robots: {
     index: true,
@@ -41,6 +50,10 @@ export const metadata: Metadata = {
     },
   },
 };
+
+// Make this page dynamic to fetch fresh data from Supabase
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function Index() {
   const allPosts = await getAllPosts();

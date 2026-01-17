@@ -53,6 +53,10 @@ export const metadata: Metadata = {
   },
 };
 
+// Make this page dynamic to fetch fresh data from Supabase
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function NewsPage() {
   const allPosts = await getPostsByCategory('news');
 

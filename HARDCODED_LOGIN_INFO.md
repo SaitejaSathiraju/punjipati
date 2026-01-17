@@ -38,3 +38,5 @@ ADMIN_PASSWORD=your_secure_password
 - Logout button is available in the admin panel header
 
 
+
+

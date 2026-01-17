@@ -88,3 +88,5 @@ If Supabase is not configured, the app will automatically:
 4. If you prefer file-based posts, you can skip Supabase setup and use the `_posts` directory
 
 
+
+

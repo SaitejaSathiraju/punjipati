@@ -80,8 +80,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" href="/favicon/favicon.png" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -105,7 +103,8 @@ export default function RootLayout({
           href="/favicon/safari-pinned-tab.svg"
           color="#000000"
         />
-        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/favicon/favicon.png" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="msapplication-config"

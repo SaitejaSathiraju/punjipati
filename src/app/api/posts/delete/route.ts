@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { revalidatePath } from "next/cache";
 
 export async function DELETE(request: NextRequest) {
   try {
@@ -35,6 +36,13 @@ export async function DELETE(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Revalidate pages to reflect deletion
+    revalidatePath("/");
+    revalidatePath("/news");
+    revalidatePath("/case-study");
+    revalidatePath("/sitemap.xml");
+    revalidatePath(`/posts/${slug}`);
 
     return NextResponse.json({
       success: true,
