@@ -58,3 +58,4 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 Once you add the service role key, everything will work!
 
+

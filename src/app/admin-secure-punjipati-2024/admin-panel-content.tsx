@@ -18,6 +18,7 @@ export default function AdminPanelContent() {
     authorName: "Finance Team",
     authorPicture: "/assets/blog/authors/tim.jpeg",
     ogImage: "",
+    category: "news" as "news" | "case-study" | "general",
   });
   const [uploading, setUploading] = useState(false);
 
@@ -52,6 +53,7 @@ export default function AdminPanelContent() {
         authorName: "Finance Team",
         authorPicture: "/assets/blog/authors/tim.jpeg",
         ogImage: "",
+        category: "news",
       });
 
       // Redirect to homepage after 2 seconds
@@ -67,7 +69,7 @@ export default function AdminPanelContent() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -284,6 +286,27 @@ export default function AdminPanelContent() {
             </div>
           </div>
 
+          <div>
+            <label htmlFor="category" className="block text-sm font-medium mb-2">
+              Category *
+            </label>
+            <select
+              id="category"
+              name="category"
+              required
+              value={formData.category}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+            >
+              <option value="news">News</option>
+              <option value="case-study">Case Study</option>
+              <option value="general">General</option>
+            </select>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Select where this post should appear: News section, Case Study section, or General (appears in both).
+            </p>
+          </div>
+
           <div className="flex gap-4">
             <button
               type="submit"
@@ -305,4 +328,5 @@ export default function AdminPanelContent() {
     </Container>
   );
 }
+
 

@@ -56,3 +56,4 @@ npm run dev
 
 The code is now set up to work **without Supabase** - it will automatically use your Markdown files from the `_posts` folder. So even if Supabase isn't configured, the app should work fine!
 
+

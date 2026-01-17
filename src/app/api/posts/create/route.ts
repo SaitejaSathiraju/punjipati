@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
       authorName,
       authorPicture,
       ogImage,
+      category,
     } = body;
 
     // Validate required fields
@@ -51,6 +52,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate category
+    const validCategories = ['news', 'case-study', 'general'];
+    const postCategory = category && validCategories.includes(category) 
+      ? category 
+      : 'news';
+
     // Insert post into Supabase
     const { data: post, error } = await supabase
       .from("posts")
@@ -65,6 +72,7 @@ export async function POST(request: NextRequest) {
         author_picture_url: authorPicture || null,
         published_at: new Date().toISOString(),
         is_published: true,
+        category: postCategory,
       })
       .select()
       .single();

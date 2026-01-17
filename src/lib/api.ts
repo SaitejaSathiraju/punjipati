@@ -72,6 +72,7 @@ async function getPostsFromSupabase(): Promise<Post[]> {
       },
       content: post.content,
       preview: !post.is_published,
+      category: post.category || 'news',
     }));
   } catch (error) {
     // Silently fall back to file system if Supabase is not configured
@@ -120,6 +121,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
             },
             content: post.content,
             preview: !post.is_published,
+            category: post.category || 'news',
           };
         }
       }
@@ -149,4 +151,88 @@ export async function getAllPosts(): Promise<Post[]> {
   
   // Fallback to file system
   return getPostsFromFilesystem();
+}
+
+// Get posts by category
+// For 'news' and 'case-study', also includes 'general' category posts
+export async function getPostsByCategory(category: 'news' | 'case-study' | 'general'): Promise<Post[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      const { createServerSupabaseClient } = await import("./supabase-server");
+      const supabase = createServerSupabaseClient();
+      
+      if (!supabase) {
+        // Fallback to file system and filter by category if available
+        const allPosts = await getPostsFromFilesystem();
+        if (category === 'general') {
+          return allPosts.filter(post => post.category === 'general' || !post.category);
+        }
+        // For news and case-study, include general posts too
+        return allPosts.filter(post => 
+          post.category === category || post.category === 'general' || (!post.category && category === 'news')
+        );
+      }
+      
+      // Build query: include the specific category and 'general' category (except when querying for 'general' itself)
+      let query = supabase
+        .from("posts")
+        .select("*")
+        .eq("is_published", true);
+      
+      if (category === 'general') {
+        query = query.eq("category", 'general');
+      } else {
+        // For news and case-study, include both the category and 'general'
+        query = query.in("category", [category, 'general']);
+      }
+      
+      const { data: posts, error } = await query.order("published_at", { ascending: false });
+
+      if (error) {
+        const allPosts = await getPostsFromFilesystem();
+        if (category === 'general') {
+          return allPosts.filter(post => post.category === 'general' || !post.category);
+        }
+        return allPosts.filter(post => 
+          post.category === category || post.category === 'general' || (!post.category && category === 'news')
+        );
+      }
+
+      // Transform Supabase posts to Post interface
+      return (posts || []).map((post) => ({
+        slug: post.slug,
+        title: post.title,
+        date: post.published_at,
+        coverImage: post.cover_image_url || "/assets/blog/hello-world/cover.jpg",
+        author: {
+          name: post.author_name,
+          picture: post.author_picture_url || "/assets/blog/authors/tim.jpeg",
+        },
+        excerpt: post.excerpt,
+        ogImage: {
+          url: post.og_image_url || post.cover_image_url || "/assets/blog/hello-world/cover.jpg",
+        },
+        content: post.content,
+        preview: !post.is_published,
+        category: post.category || 'news',
+      }));
+    } catch (error) {
+      const allPosts = await getPostsFromFilesystem();
+      if (category === 'general') {
+        return allPosts.filter(post => post.category === 'general' || !post.category);
+      }
+      return allPosts.filter(post => 
+        post.category === category || post.category === 'general' || (!post.category && category === 'news')
+      );
+    }
+  }
+  
+  // Fallback to file system
+  const allPosts = await getPostsFromFilesystem();
+  if (category === 'general') {
+    return allPosts.filter(post => post.category === 'general' || !post.category);
+  }
+  return allPosts.filter(post => 
+    post.category === category || post.category === 'general' || (!post.category && category === 'news')
+  );
 }

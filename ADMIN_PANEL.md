@@ -72,3 +72,4 @@ Posts are sorted by date in descending order (newest first).
 - After publishing, you'll be redirected to the homepage
 - Make sure to upload cover images to the `public/assets/blog/` directory before referencing them
 
+

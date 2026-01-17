@@ -28,7 +28,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-neutral-200 dark:border-neutral-700 py-8 text-center text-gray-600 dark:text-gray-400">
-          <p>© {new Date().getFullYear()} Punjipati Finance. All rights reserved.</p>
+          <p>Punjipati</p>
         </div>
       </Container>
     </footer>

@@ -1,5 +1,7 @@
 import { type Author } from "./author";
 
+export type PostCategory = 'news' | 'case-study' | 'general';
+
 export type Post = {
   slug: string;
   title: string;
@@ -12,4 +14,5 @@ export type Post = {
   };
   content: string;
   preview?: boolean;
+  category?: PostCategory;
 };

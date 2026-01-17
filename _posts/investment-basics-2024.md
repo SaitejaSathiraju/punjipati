@@ -77,3 +77,4 @@ While it's important to stay informed about market conditions, avoid making emot
 
 Remember, investing is a marathon, not a sprint. Building wealth takes time, patience, and discipline. Start with the basics, stay consistent, and adjust your strategy as you learn and your circumstances change.
 
+

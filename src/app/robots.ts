@@ -9,6 +9,8 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         allow: '/posts/',
+        allow: '/news',
+        allow: '/case-study',
         disallow: ['/api/', '/admin/', '/admin-secure-punjipati-2024/'],
         crawlDelay: 0, // Allow fast crawling
       },
@@ -16,6 +18,8 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'Googlebot',
         allow: '/',
         allow: '/posts/',
+        allow: '/news',
+        allow: '/case-study',
         disallow: ['/api/', '/admin/', '/admin-secure-punjipati-2024/'],
         crawlDelay: 0, // Fast indexing for Google
       },
@@ -23,6 +27,8 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'Bingbot',
         allow: '/',
         allow: '/posts/',
+        allow: '/news',
+        allow: '/case-study',
         disallow: ['/api/', '/admin/', '/admin-secure-punjipati-2024/'],
         crawlDelay: 0,
       },

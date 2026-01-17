@@ -25,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  content: "A";
+  content: "";
 }
 
 [data-mode="light"] .switch {

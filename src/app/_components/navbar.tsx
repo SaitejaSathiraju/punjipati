@@ -14,32 +14,38 @@ export function Navbar({ className }: { className?: string }) {
         </Link>
         <MenuItem setActive={setActive} active={active} item="Case Study">
           <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/case-study/investment-strategies">
+            <HoveredLink href="/case-study">
+              All Case Studies
+            </HoveredLink>
+            <HoveredLink href="/case-study">
               Investment Strategies
             </HoveredLink>
-            <HoveredLink href="/case-study/portfolio-analysis">
+            <HoveredLink href="/case-study">
               Portfolio Analysis
             </HoveredLink>
-            <HoveredLink href="/case-study/risk-management">
+            <HoveredLink href="/case-study">
               Risk Management
             </HoveredLink>
-            <HoveredLink href="/case-study/market-trends">
+            <HoveredLink href="/case-study">
               Market Trends
             </HoveredLink>
           </div>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="News">
           <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/news/market-updates">
+            <HoveredLink href="/news">
+              All News
+            </HoveredLink>
+            <HoveredLink href="/news">
               Market Updates
             </HoveredLink>
-            <HoveredLink href="/news/economic-news">
+            <HoveredLink href="/news">
               Economic News
             </HoveredLink>
-            <HoveredLink href="/news/company-news">
+            <HoveredLink href="/news">
               Company News
             </HoveredLink>
-            <HoveredLink href="/news/regulatory-updates">
+            <HoveredLink href="/news">
               Regulatory Updates
             </HoveredLink>
           </div>

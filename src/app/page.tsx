@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Stay informed with the latest trends in finance, stock market, trading, and economics.',
   keywords: ['finance', 'investment', 'market analysis', 'financial news', 'personal finance', 'stock market', 'trading', 'economics', 'investment strategies', 'portfolio management', 'risk management'],
   alternates: {
-    canonical: '/',
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
     types: {
       'application/rss+xml': '/feed.xml',
     },
