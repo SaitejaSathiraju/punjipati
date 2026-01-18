@@ -1,41 +1,41 @@
 import Container from "@/app/_components/container";
 import { PostsListWithSearch } from "@/app/_components/posts-list-with-search";
 import { StructuredData } from "@/app/_components/structured-data";
-import { getPostsByCategory } from "@/lib/api";
+import { getAllPosts } from "@/lib/api";
 import type { Metadata } from "next";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 
 export const metadata: Metadata = {
-  title: 'Finance News | Punjipati',
-  description: 'Latest finance news, market updates, economic news, and regulatory updates. Stay informed with the latest trends in finance and economics.',
-  keywords: ['finance news', 'market updates', 'economic news', 'financial news', 'regulatory updates', 'company news', 'stock market news', 'financial markets'],
+  title: 'All Articles | Punjipati Finance',
+  description: 'Browse all finance articles, news, case studies, and insights from Punjipati Finance. Stay informed with comprehensive financial content.',
+  keywords: ['finance articles', 'finance blog', 'investment articles', 'financial news', 'market analysis', 'case studies', 'finance insights'],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
   category: 'Finance',
-  classification: 'Finance News',
+  classification: 'Finance Articles',
   alternates: {
-    canonical: `${baseUrl}/news`,
+    canonical: `${baseUrl}/posts`,
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: `${baseUrl}/news`,
+    url: `${baseUrl}/posts`,
     siteName: 'Punjipati Finance',
-    title: 'Finance News | Punjipati',
-    description: 'Latest finance news, market updates, economic news, and regulatory updates. Stay informed with the latest trends in finance and economics.',
+    title: 'All Articles | Punjipati Finance',
+    description: 'Browse all finance articles, news, case studies, and insights from Punjipati Finance.',
     images: [{
       url: `${baseUrl}/assets/blog/preview/cover.jpg`,
       width: 1200,
       height: 630,
-      alt: 'Punjipati Finance News',
+      alt: 'Punjipati Finance Articles',
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Finance News | Punjipati',
-    description: 'Latest finance news, market updates, economic news, and regulatory updates.',
+    title: 'All Articles | Punjipati Finance',
+    description: 'Browse all finance articles, news, case studies, and insights from Punjipati Finance.',
     images: [`${baseUrl}/assets/blog/preview/cover.jpg`],
     creator: '@punjipati',
     site: '@punjipati',
@@ -57,16 +57,16 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default async function NewsPage() {
+export default async function AllPostsPage() {
   // Fetch only 5 posts initially for better performance
-  const initialPosts = await getPostsByCategory('news', 5);
+  const initialPosts = await getAllPosts(5);
 
   const collectionStructuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Finance News",
-    "description": "Latest finance news, market updates, economic news, and regulatory updates",
-    "url": `${baseUrl}/news`,
+    "name": "All Finance Articles",
+    "description": "Browse all finance articles, news, case studies, and insights from Punjipati Finance",
+    "url": `${baseUrl}/posts`,
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": initialPosts.length,
@@ -74,7 +74,7 @@ export default async function NewsPage() {
         "@type": "ListItem",
         "position": index + 1,
         "item": {
-          "@type": "NewsArticle",
+          "@type": "Article",
           "headline": post.title,
           "url": `${baseUrl}/posts/${post.slug}`,
           "datePublished": post.date,
@@ -99,14 +99,12 @@ export default async function NewsPage() {
         <Container>
           <PostsListWithSearch
             initialPosts={initialPosts}
-            category="news"
-            title="Finance News"
-            description="Stay updated with the latest finance news, market updates, economic insights, and regulatory changes."
+            title="All Articles"
+            description="Browse all finance articles, news, case studies, and insights. Use the search to find specific topics."
           />
         </Container>
       </main>
     </>
   );
 }
-
 

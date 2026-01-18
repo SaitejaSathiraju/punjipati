@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        allow: '/posts',
         allow: '/posts/',
         allow: '/news',
         allow: '/case-study',
@@ -17,6 +18,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: 'Googlebot',
         allow: '/',
+        allow: '/posts',
         allow: '/posts/',
         allow: '/news',
         allow: '/case-study',
@@ -26,6 +28,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: 'Bingbot',
         allow: '/',
+        allow: '/posts',
         allow: '/posts/',
         allow: '/news',
         allow: '/case-study',

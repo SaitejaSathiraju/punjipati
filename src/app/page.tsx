@@ -56,10 +56,8 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function Index() {
-  const allPosts = await getAllPosts();
-
-  // Get latest 5 posts
-  const latestPosts = allPosts.slice(0, 5);
+  // Fetch only 5 posts from the database for better performance
+  const latestPosts = await getAllPosts(5);
   const heroPost = latestPosts[0];
   const morePosts = latestPosts.slice(1);
 

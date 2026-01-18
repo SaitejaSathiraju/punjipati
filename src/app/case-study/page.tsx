@@ -1,5 +1,5 @@
 import Container from "@/app/_components/container";
-import { MoreStories } from "@/app/_components/more-stories";
+import { PostsListWithSearch } from "@/app/_components/posts-list-with-search";
 import { StructuredData } from "@/app/_components/structured-data";
 import { getPostsByCategory } from "@/lib/api";
 import type { Metadata } from "next";
@@ -58,7 +58,8 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function CaseStudyPage() {
-  const allPosts = await getPostsByCategory('case-study');
+  // Fetch only 5 posts initially for better performance
+  const initialPosts = await getPostsByCategory('case-study', 5);
 
   const collectionStructuredData = {
     "@context": "https://schema.org",
@@ -68,8 +69,8 @@ export default async function CaseStudyPage() {
     "url": `${baseUrl}/case-study`,
     "mainEntity": {
       "@type": "ItemList",
-      "numberOfItems": allPosts.length,
-      "itemListElement": allPosts.map((post, index) => ({
+      "numberOfItems": initialPosts.length,
+      "itemListElement": initialPosts.map((post, index) => ({
         "@type": "ListItem",
         "position": index + 1,
         "item": {
@@ -96,26 +97,16 @@ export default async function CaseStudyPage() {
       />
       <main>
         <Container>
-          <div className="py-16">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-8">
-              Case Studies
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-12">
-              Explore in-depth case studies on investment strategies, portfolio analysis, risk management, and market trends.
-            </p>
-            {allPosts.length > 0 ? (
-              <MoreStories posts={allPosts} />
-            ) : (
-              <div className="text-center py-16">
-                <p className="text-xl text-gray-600 dark:text-gray-400">
-                  No case studies yet. Check back soon for updates.
-                </p>
-              </div>
-            )}
-          </div>
+          <PostsListWithSearch
+            initialPosts={initialPosts}
+            category="case-study"
+            title="Case Studies"
+            description="Explore in-depth case studies on investment strategies, portfolio analysis, risk management, and market trends."
+          />
         </Container>
       </main>
     </>
   );
 }
+
 
