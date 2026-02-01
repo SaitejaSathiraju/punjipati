@@ -12,47 +12,36 @@ export function Navbar({ className }: { className?: string }) {
         <Link href="/" className="text-black hover:opacity-[0.9] dark:text-white cursor-pointer">
           Home
         </Link>
-        <MenuItem setActive={setActive} active={active} item="Case Study">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/case-study">
-              All Case Studies
-            </HoveredLink>
-            <HoveredLink href="/case-study">
-              Investment Strategies
-            </HoveredLink>
-            <HoveredLink href="/case-study">
-              Portfolio Analysis
-            </HoveredLink>
-            <HoveredLink href="/case-study">
-              Risk Management
-            </HoveredLink>
-            <HoveredLink href="/case-study">
-              Market Trends
-            </HoveredLink>
-          </div>
-        </MenuItem>
         <MenuItem setActive={setActive} active={active} item="News">
           <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/news">
-              All News
+            <HoveredLink href="/news/national">
+              National News
             </HoveredLink>
-            <HoveredLink href="/news">
-              Market Updates
-            </HoveredLink>
-            <HoveredLink href="/news">
-              Economic News
-            </HoveredLink>
-            <HoveredLink href="/news">
-              Company News
-            </HoveredLink>
-            <HoveredLink href="/news">
-              Regulatory Updates
+            <HoveredLink href="/news/international">
+              International News
             </HoveredLink>
           </div>
         </MenuItem>
-        <Link href="/" className="text-black hover:opacity-[0.9] dark:text-white cursor-pointer">
-          Articles
-        </Link>
+        <MenuItem setActive={setActive} active={active} item="Market">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/market/national">
+              National Market
+            </HoveredLink>
+            <HoveredLink href="/market/international">
+              International Market
+            </HoveredLink>
+          </div>
+        </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="Case Study">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/case-study/national">
+              National Case Study
+            </HoveredLink>
+            <HoveredLink href="/case-study/international">
+              International Case Study
+            </HoveredLink>
+          </div>
+        </MenuItem>
       </Menu>
     </div>
   );

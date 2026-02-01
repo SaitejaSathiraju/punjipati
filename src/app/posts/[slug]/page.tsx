@@ -129,9 +129,11 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 
   // Extract keywords from title and content
   const titleWords = title.toLowerCase().split(/\s+/).filter(w => w.length > 3);
-  const categoryKeywords = post.category === 'case-study' 
+  const categoryKeywords = post.category?.includes('case-study')
     ? ['case study', 'investment strategies', 'portfolio analysis', 'risk management']
-    : post.category === 'news'
+    : post.category?.includes('market')
+    ? ['market analysis', 'market trends', 'market updates', 'financial markets']
+    : post.category?.includes('news')
     ? ['finance news', 'market updates', 'economic news', 'financial news']
     : ['finance', 'investment', 'market analysis'];
   
@@ -155,8 +157,14 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     authors: [{ name: post.author.name }],
     creator: 'Punjipati Finance',
     publisher: 'Punjipati Finance',
-    category: post.category === 'case-study' ? 'Case Study' : post.category === 'news' ? 'News' : 'Finance',
-    classification: post.category === 'case-study' ? 'Finance Case Studies' : post.category === 'news' ? 'Finance News' : 'Finance News and Analysis',
+    category: post.category?.includes('case-study') ? 'Case Study' : post.category?.includes('market') ? 'Market' : post.category?.includes('news') ? 'News' : 'Finance',
+    classification: post.category?.includes('case-study') 
+      ? (post.category?.includes('national') ? 'National Finance Case Studies' : 'International Finance Case Studies')
+      : post.category?.includes('market')
+      ? (post.category?.includes('national') ? 'National Market Analysis' : 'International Market Analysis')
+      : post.category?.includes('news')
+      ? (post.category?.includes('national') ? 'National Finance News' : 'International Finance News')
+      : 'Finance News and Analysis',
     openGraph: {
       type: 'article',
       title,
@@ -200,7 +208,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       'article:published_time': publishedTime,
       'article:modified_time': modifiedTime,
       'article:author': post.author.name,
-      'article:section': post.category === 'case-study' ? 'Case Study' : post.category === 'news' ? 'News' : 'Finance',
+      'article:section': post.category?.includes('case-study') ? 'Case Study' : post.category?.includes('market') ? 'Market' : post.category?.includes('news') ? 'News' : 'Finance',
       'article:tag': keywords.join(', '),
       'article:category': post.category || 'Finance',
     },

@@ -7,35 +7,35 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 
 export const metadata: Metadata = {
-  title: 'Finance News | Punjipati',
-  description: 'Latest finance news, market updates, economic news, and regulatory updates. Stay informed with the latest trends in finance and economics.',
-  keywords: ['finance news', 'market updates', 'economic news', 'financial news', 'regulatory updates', 'company news', 'stock market news', 'financial markets'],
+  title: 'National Case Studies | Punjipati Finance',
+  description: 'In-depth national case studies on investment strategies, portfolio analysis, risk management, and market trends. Learn from real-world domestic finance scenarios.',
+  keywords: ['national case study', 'domestic case study', 'investment strategies', 'portfolio analysis', 'risk management', 'market trends', 'finance case study', 'national investment analysis'],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
   category: 'Finance',
-  classification: 'Finance News',
+  classification: 'National Finance Case Studies',
   alternates: {
-    canonical: `${baseUrl}/news`,
+    canonical: `${baseUrl}/case-study/national`,
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: `${baseUrl}/news`,
+    url: `${baseUrl}/case-study/national`,
     siteName: 'Punjipati Finance',
-    title: 'Finance News | Punjipati',
-    description: 'Latest finance news, market updates, economic news, and regulatory updates. Stay informed with the latest trends in finance and economics.',
+    title: 'National Case Studies | Punjipati Finance',
+    description: 'In-depth national case studies on investment strategies, portfolio analysis, risk management, and market trends. Learn from real-world domestic finance scenarios.',
     images: [{
       url: `${baseUrl}/favicon/apple-touch-icon.png`,
-      width: 1200,
-      height: 630,
-      alt: 'Punjipati Finance News',
+      width: 180,
+      height: 180,
+      alt: 'Punjipati Finance National Case Studies',
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Finance News | Punjipati',
-    description: 'Latest finance news, market updates, economic news, and regulatory updates.',
+    title: 'National Case Studies | Punjipati Finance',
+    description: 'In-depth national case studies on investment strategies, portfolio analysis, risk management, and market trends.',
     images: [`${baseUrl}/favicon/apple-touch-icon.png`],
     creator: '@punjipati',
     site: '@punjipati',
@@ -57,16 +57,16 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default async function NewsPage() {
+export default async function NationalCaseStudyPage() {
   // Fetch only 5 posts initially for better performance
-  const initialPosts = await getPostsByCategory('news', 5);
+  const initialPosts = await getPostsByCategory('case-study-national', 5);
 
   const collectionStructuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Finance News",
-    "description": "Latest finance news, market updates, economic news, and regulatory updates",
-    "url": `${baseUrl}/news`,
+    "name": "National Finance Case Studies",
+    "description": "In-depth national case studies on investment strategies, portfolio analysis, risk management, and market trends",
+    "url": `${baseUrl}/case-study/national`,
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": initialPosts.length,
@@ -74,7 +74,7 @@ export default async function NewsPage() {
         "@type": "ListItem",
         "position": index + 1,
         "item": {
-          "@type": "NewsArticle",
+          "@type": "CaseStudy",
           "headline": post.title,
           "url": `${baseUrl}/posts/${post.slug}`,
           "datePublished": post.date,
@@ -99,14 +99,13 @@ export default async function NewsPage() {
         <Container>
           <PostsListWithSearch
             initialPosts={initialPosts}
-            category="news"
-            title="Finance News"
-            description="Stay updated with the latest finance news, market updates, economic insights, and regulatory changes."
+            category="case-study-national"
+            title="National Case Studies"
+            description="Explore in-depth national case studies on investment strategies, portfolio analysis, risk management, and market trends from domestic markets."
           />
         </Container>
       </main>
     </>
   );
 }
-
 

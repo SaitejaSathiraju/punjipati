@@ -78,7 +78,7 @@ async function getPostsFromSupabase(limit?: number): Promise<Post[]> {
       },
       content: post.content,
       preview: !post.is_published,
-      category: post.category || 'news',
+      category: post.category || 'news-national',
     }));
   } catch (error) {
     // Silently fall back to file system if Supabase is not configured
@@ -127,7 +127,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
             },
             content: post.content,
             preview: !post.is_published,
-            category: post.category || 'news',
+            category: post.category || 'news-national',
           };
         }
       }
@@ -161,42 +161,29 @@ export async function getAllPosts(limit?: number): Promise<Post[]> {
 }
 
 // Get posts by category
-// For 'news' and 'case-study', also includes 'general' category posts
-export async function getPostsByCategory(category: 'news' | 'case-study' | 'general', limit?: number): Promise<Post[]> {
+export async function getPostsByCategory(
+  category: 'news-national' | 'news-international' | 'market-national' | 'market-international' | 'case-study-national' | 'case-study-international', 
+  limit?: number
+): Promise<Post[]> {
   if (isSupabaseConfigured()) {
     try {
       const { createServerSupabaseClient } = await import("./supabase-server");
       const supabase = createServerSupabaseClient();
       
       if (!supabase) {
-        // Fallback to file system and filter by category if available
+        // Fallback to file system and filter by category
         const allPosts = await getPostsFromFilesystem();
-        let filteredPosts;
-        if (category === 'general') {
-          filteredPosts = allPosts.filter(post => post.category === 'general' || !post.category);
-        } else {
-          // For news and case-study, include general posts too
-          filteredPosts = allPosts.filter(post => 
-            post.category === category || post.category === 'general' || (!post.category && category === 'news')
-          );
-        }
+        const filteredPosts = allPosts.filter(post => post.category === category);
         return limit ? filteredPosts.slice(0, limit) : filteredPosts;
       }
       
-      // Build query: include the specific category and 'general' category (except when querying for 'general' itself)
+      // Build query: filter by exact category match
       let query = supabase
         .from("posts")
         .select("*")
-        .eq("is_published", true);
-      
-      if (category === 'general') {
-        query = query.eq("category", 'general');
-      } else {
-        // For news and case-study, include both the category and 'general'
-        query = query.in("category", [category, 'general']);
-      }
-      
-      query = query.order("published_at", { ascending: false });
+        .eq("is_published", true)
+        .eq("category", category)
+        .order("published_at", { ascending: false });
       
       if (limit) {
         query = query.limit(limit);
@@ -206,14 +193,7 @@ export async function getPostsByCategory(category: 'news' | 'case-study' | 'gene
 
       if (error) {
         const allPosts = await getPostsFromFilesystem();
-        let filteredPosts;
-        if (category === 'general') {
-          filteredPosts = allPosts.filter(post => post.category === 'general' || !post.category);
-        } else {
-          filteredPosts = allPosts.filter(post => 
-            post.category === category || post.category === 'general' || (!post.category && category === 'news')
-          );
-        }
+        const filteredPosts = allPosts.filter(post => post.category === category);
         return limit ? filteredPosts.slice(0, limit) : filteredPosts;
       }
 
@@ -233,31 +213,17 @@ export async function getPostsByCategory(category: 'news' | 'case-study' | 'gene
         },
         content: post.content,
         preview: !post.is_published,
-        category: post.category || 'news',
+        category: post.category || 'news-national',
       }));
     } catch (error) {
       const allPosts = await getPostsFromFilesystem();
-      let filteredPosts;
-      if (category === 'general') {
-        filteredPosts = allPosts.filter(post => post.category === 'general' || !post.category);
-      } else {
-        filteredPosts = allPosts.filter(post => 
-          post.category === category || post.category === 'general' || (!post.category && category === 'news')
-        );
-      }
+      const filteredPosts = allPosts.filter(post => post.category === category);
       return limit ? filteredPosts.slice(0, limit) : filteredPosts;
     }
   }
   
   // Fallback to file system
   const allPosts = await getPostsFromFilesystem();
-  let filteredPosts;
-  if (category === 'general') {
-    filteredPosts = allPosts.filter(post => post.category === 'general' || !post.category);
-  } else {
-    filteredPosts = allPosts.filter(post => 
-      post.category === category || post.category === 'general' || (!post.category && category === 'news')
-    );
-  }
+  const filteredPosts = allPosts.filter(post => post.category === category);
   return limit ? filteredPosts.slice(0, limit) : filteredPosts;
 }

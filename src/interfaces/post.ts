@@ -1,6 +1,12 @@
 import { type Author } from "./author";
 
-export type PostCategory = 'news' | 'case-study' | 'general';
+export type PostCategory = 
+  | 'news-national' 
+  | 'news-international' 
+  | 'market-national' 
+  | 'market-international' 
+  | 'case-study-national' 
+  | 'case-study-international';
 
 export type Post = {
   slug: string;

@@ -6,7 +6,7 @@ import { PostPreview } from './post-preview';
 
 type Props = {
   initialPosts: Post[];
-  category?: 'news' | 'case-study' | 'general';
+  category?: 'news-national' | 'news-international' | 'market-national' | 'market-international' | 'case-study-national' | 'case-study-international';
   title?: string;
   description?: string;
 };

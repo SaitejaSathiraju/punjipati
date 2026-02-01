@@ -54,10 +54,17 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate category
-    const validCategories = ['news', 'case-study', 'general'];
+    const validCategories = [
+      'news-national', 
+      'news-international', 
+      'market-national', 
+      'market-international', 
+      'case-study-national', 
+      'case-study-international'
+    ];
     const postCategory = category && validCategories.includes(category) 
       ? category 
-      : 'news';
+      : 'news-national';
 
     // Insert post into Supabase
     const { data: post, error } = await supabase
@@ -88,8 +95,12 @@ export async function POST(request: NextRequest) {
 
     // Revalidate pages to show new content immediately
     revalidatePath("/");
-    revalidatePath("/news");
-    revalidatePath("/case-study");
+    revalidatePath("/news/national");
+    revalidatePath("/news/international");
+    revalidatePath("/market/national");
+    revalidatePath("/market/international");
+    revalidatePath("/case-study/national");
+    revalidatePath("/case-study/international");
     revalidatePath("/sitemap.xml");
     revalidatePath(`/posts/${slug}`);
 

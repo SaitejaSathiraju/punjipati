@@ -23,14 +23,9 @@ export async function GET(request: Request) {
       .select("id, slug, title, excerpt, published_at, author_name, author_picture_url, cover_image_url, category")
       .eq("is_published", true);
 
-    // Apply category filter
+    // Apply category filter - exact match for new category system
     if (category) {
-      if (category === 'general') {
-        query = query.eq("category", 'general');
-      } else {
-        // For news and case-study, include both the category and 'general'
-        query = query.in("category", [category, 'general']);
-      }
+      query = query.eq("category", category);
     }
 
     // Apply search filter
@@ -61,11 +56,7 @@ export async function GET(request: Request) {
       .eq("is_published", true);
 
     if (category) {
-      if (category === 'general') {
-        countQuery = countQuery.eq("category", 'general');
-      } else {
-        countQuery = countQuery.in("category", [category, 'general']);
-      }
+      countQuery = countQuery.eq("category", category);
     }
 
     if (search) {
@@ -86,7 +77,7 @@ export async function GET(request: Request) {
         picture: post.author_picture_url || "/assets/blog/authors/tim.jpeg",
       },
       coverImage: post.cover_image_url || null,
-      category: post.category || 'news',
+      category: post.category || 'news-national',
     })) || [];
 
     return NextResponse.json({ 
