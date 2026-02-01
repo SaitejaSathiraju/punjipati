@@ -6,7 +6,7 @@ import DateFormatter from "./date-formatter";
 
 type Props = {
   title: string;
-  coverImage: string;
+  coverImage: string | null | undefined;
   date: string;
   excerpt: string;
   author: Author;

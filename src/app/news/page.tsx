@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'Finance News | Punjipati',
     description: 'Latest finance news, market updates, economic news, and regulatory updates. Stay informed with the latest trends in finance and economics.',
     images: [{
-      url: `${baseUrl}/assets/blog/preview/cover.jpg`,
+      url: `${baseUrl}/assets/blog/dynamic-routing/cover.jpg`,
       width: 1200,
       height: 630,
       alt: 'Punjipati Finance News',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Finance News | Punjipati',
     description: 'Latest finance news, market updates, economic news, and regulatory updates.',
-    images: [`${baseUrl}/assets/blog/preview/cover.jpg`],
+    images: [`${baseUrl}/assets/blog/dynamic-routing/cover.jpg`],
     creator: '@punjipati',
     site: '@punjipati',
   },

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'Case Studies | Punjipati',
     description: 'In-depth case studies on investment strategies, portfolio analysis, risk management, and market trends. Learn from real-world finance scenarios.',
     images: [{
-      url: `${baseUrl}/assets/blog/preview/cover.jpg`,
+      url: `${baseUrl}/assets/blog/dynamic-routing/cover.jpg`,
       width: 1200,
       height: 630,
       alt: 'Punjipati Finance Case Studies',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Case Studies | Punjipati',
     description: 'In-depth case studies on investment strategies, portfolio analysis, risk management, and market trends.',
-    images: [`${baseUrl}/assets/blog/preview/cover.jpg`],
+    images: [`${baseUrl}/assets/blog/dynamic-routing/cover.jpg`],
     creator: '@punjipati',
     site: '@punjipati',
   },

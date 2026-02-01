@@ -36,7 +36,7 @@ export async function GET() {
         name: post.author_name,
         picture: post.author_picture_url || "/assets/blog/authors/tim.jpeg",
       },
-      coverImage: post.cover_image_url || "/assets/blog/hello-world/cover.jpg",
+      coverImage: post.cover_image_url || null,
     })) || [];
 
     return NextResponse.json({ posts: postsData });

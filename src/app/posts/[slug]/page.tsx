@@ -118,9 +118,12 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   const title = post.title;
   const description = post.excerpt;
   const url = `${baseUrl}/posts/${slug}`;
-  const imageUrl = (post.ogImage?.url || post.coverImage)?.startsWith('http')
-    ? (post.ogImage?.url || post.coverImage)
-    : `${baseUrl}${post.ogImage?.url || post.coverImage}`;
+  const defaultImage = `${baseUrl}/assets/blog/dynamic-routing/cover.jpg`;
+  const imageUrl = (post.ogImage?.url || post.coverImage)
+    ? ((post.ogImage?.url || post.coverImage)?.startsWith('http')
+      ? (post.ogImage?.url || post.coverImage)
+      : `${baseUrl}${post.ogImage?.url || post.coverImage}`)
+    : defaultImage;
   const publishedTime = new Date(post.date).toISOString();
   const modifiedTime = new Date(post.date).toISOString();
 

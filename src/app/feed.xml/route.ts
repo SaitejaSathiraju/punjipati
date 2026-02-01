@@ -20,7 +20,11 @@ export async function GET() {
     const postUrl = `${baseUrl}/posts/${post.slug}`;
     const imageUrl = post.coverImage?.startsWith('http') 
       ? post.coverImage 
-      : `${baseUrl}${post.coverImage || '/assets/blog/hello-world/cover.jpg'}`;
+      : post.coverImage ? `${baseUrl}${post.coverImage}` : null;
+    
+    const enclosureTag = imageUrl 
+      ? `      <enclosure url="${imageUrl}" type="image/jpeg" />`
+      : '';
     
     return `    <item>
       <title><![CDATA[${post.title}]]></title>
@@ -30,7 +34,7 @@ export async function GET() {
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <author>${post.author.name}</author>
       <category>${post.category || 'Finance'}</category>
-      <enclosure url="${imageUrl}" type="image/jpeg" />
+${enclosureTag}
     </item>`;
   }).join('\n');
 
@@ -44,7 +48,7 @@ export async function GET() {
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml" />
     <image>
-      <url>${baseUrl}/assets/blog/preview/cover.jpg</url>
+      <url>${baseUrl}/assets/blog/dynamic-routing/cover.jpg</url>
       <title>Punjipati Finance</title>
       <link>${baseUrl}</link>
     </image>
@@ -59,4 +63,7 @@ ${rssItems}
     },
   });
 }
+
+
+
 

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'All Articles | Punjipati Finance',
     description: 'Browse all finance articles, news, case studies, and insights from Punjipati Finance.',
     images: [{
-      url: `${baseUrl}/assets/blog/preview/cover.jpg`,
+      url: `${baseUrl}/assets/blog/dynamic-routing/cover.jpg`,
       width: 1200,
       height: 630,
       alt: 'Punjipati Finance Articles',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'All Articles | Punjipati Finance',
     description: 'Browse all finance articles, news, case studies, and insights from Punjipati Finance.',
-    images: [`${baseUrl}/assets/blog/preview/cover.jpg`],
+    images: [`${baseUrl}/assets/blog/dynamic-routing/cover.jpg`],
     creator: '@punjipati',
     site: '@punjipati',
   },
@@ -107,4 +107,7 @@ export default async function AllPostsPage() {
     </>
   );
 }
+
+
+
 

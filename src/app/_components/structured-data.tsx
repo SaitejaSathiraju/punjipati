@@ -42,9 +42,11 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
       "image": [
         {
           "@type": "ImageObject",
-          "url": post.ogImage?.url?.startsWith('http') 
-            ? post.ogImage.url 
-            : `${baseUrl}${post.ogImage?.url || post.coverImage}`,
+          "url": (post.ogImage?.url || post.coverImage)
+            ? ((post.ogImage?.url || post.coverImage)?.startsWith('http')
+              ? (post.ogImage?.url || post.coverImage)
+              : `${baseUrl}${post.ogImage?.url || post.coverImage}`)
+            : `${baseUrl}/assets/blog/dynamic-routing/cover.jpg`,
           "width": 1200,
           "height": 630,
           "caption": post.title

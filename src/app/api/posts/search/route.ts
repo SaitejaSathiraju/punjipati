@@ -85,7 +85,7 @@ export async function GET(request: Request) {
         name: post.author_name,
         picture: post.author_picture_url || "/assets/blog/authors/tim.jpeg",
       },
-      coverImage: post.cover_image_url || "/assets/blog/hello-world/cover.jpg",
+      coverImage: post.cover_image_url || null,
       category: post.category || 'news',
     })) || [];
 

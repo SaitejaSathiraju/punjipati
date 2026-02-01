@@ -6,11 +6,11 @@ export type Post = {
   slug: string;
   title: string;
   date: string;
-  coverImage: string;
+  coverImage: string | null;
   author: Author;
   excerpt: string;
   ogImage: {
-    url: string;
+    url: string | null;
   };
   content: string;
   preview?: boolean;

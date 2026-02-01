@@ -4,14 +4,17 @@ import Image from "next/image";
 
 type Props = {
   title: string;
-  src: string;
+  src: string | null | undefined;
   slug?: string;
 };
 
 const CoverImage = ({ title, src, slug }: Props) => {
+  // Use default image if src is null or empty
+  const imageSrc = src || "/assets/blog/dynamic-routing/cover.jpg";
+  
   const image = (
     <Image
-      src={src}
+      src={imageSrc}
       alt={`${title} - Cover Image`}
       className={cn("shadow-sm w-full", {
         "hover:shadow-lg transition-shadow duration-200": slug,

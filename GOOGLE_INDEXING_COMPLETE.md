@@ -250,3 +250,6 @@ Make sure these are accessible:
 
 **Your website is ready for Google to index all your Supabase content!** 🎉
 
+
+
+
