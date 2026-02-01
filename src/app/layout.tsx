@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights.',
     images: [{
       url: HOME_OG_IMAGE_URL,
-      width: 1200,
-      height: 630,
+      width: 180,
+      height: 180,
       alt: 'Punjipati Finance - Finance Insights & Analysis',
     }],
   },
@@ -108,6 +108,11 @@ export default function RootLayout({
           content="/favicon/browserconfig.xml"
         />
         <meta name="theme-color" content="#000" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`} />
+        <meta property="og:image:width" content="180" />
+        <meta property="og:image:height" content="180" />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`} />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Punjipati Finance RSS Feed" />
         <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="Punjipati Finance Atom Feed" />
         <meta name="geo.region" content="US" />
@@ -130,7 +135,7 @@ export default function RootLayout({
               "name": "Punjipati Finance",
               "alternateName": "Punjipati",
               "url": process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
-              "logo": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/logo.png`,
+              "logo": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/favicon.png`,
               "description": "Your trusted source for finance news, market analysis, investment strategies, and financial insights.",
               "sameAs": [
                 // Add your social media links here when available

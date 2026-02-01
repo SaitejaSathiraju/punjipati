@@ -118,7 +118,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   const title = post.title;
   const description = post.excerpt;
   const url = `${baseUrl}/posts/${slug}`;
-  const defaultImage = `${baseUrl}/assets/blog/dynamic-routing/cover.jpg`;
+  const defaultImage = `${baseUrl}/favicon/apple-touch-icon.png`;
   const imageUrl = (post.ogImage?.url || post.coverImage)
     ? ((post.ogImage?.url || post.coverImage)?.startsWith('http')
       ? (post.ogImage?.url || post.coverImage)

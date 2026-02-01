@@ -46,7 +46,7 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
             ? ((post.ogImage?.url || post.coverImage)?.startsWith('http')
               ? (post.ogImage?.url || post.coverImage)
               : `${baseUrl}${post.ogImage?.url || post.coverImage}`)
-            : `${baseUrl}/assets/blog/dynamic-routing/cover.jpg`,
+            : `${baseUrl}/favicon/apple-touch-icon.png`,
           "width": 1200,
           "height": 630,
           "caption": post.title
@@ -66,7 +66,7 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
         "url": baseUrl,
         "logo": {
           "@type": "ImageObject",
-          "url": `${baseUrl}/logo.png`,
+          "url": `${baseUrl}/favicon/favicon.png`,
           "width": 512,
           "height": 512
         }
@@ -113,7 +113,7 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
       "name": "Punjipati Finance",
       "logo": {
         "@type": "ImageObject",
-        "url": `${baseUrl}/logo.png`
+        "url": `${baseUrl}/favicon/favicon.png`
       },
       "sameAs": [
         // Add your social media links here

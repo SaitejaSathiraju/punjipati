@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'All Articles | Punjipati Finance',
     description: 'Browse all finance articles, news, case studies, and insights from Punjipati Finance.',
     images: [{
-      url: `${baseUrl}/assets/blog/dynamic-routing/cover.jpg`,
+      url: `${baseUrl}/favicon/apple-touch-icon.png`,
       width: 1200,
       height: 630,
       alt: 'Punjipati Finance Articles',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'All Articles | Punjipati Finance',
     description: 'Browse all finance articles, news, case studies, and insights from Punjipati Finance.',
-    images: [`${baseUrl}/assets/blog/dynamic-routing/cover.jpg`],
+    images: [`${baseUrl}/favicon/apple-touch-icon.png`],
     creator: '@punjipati',
     site: '@punjipati',
   },

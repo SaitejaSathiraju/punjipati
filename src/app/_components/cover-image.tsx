@@ -10,7 +10,7 @@ type Props = {
 
 const CoverImage = ({ title, src, slug }: Props) => {
   // Use default image if src is null or empty
-  const imageSrc = src || "/assets/blog/dynamic-routing/cover.jpg";
+  const imageSrc = src || "/favicon/apple-touch-icon.png";
   
   const image = (
     <Image
