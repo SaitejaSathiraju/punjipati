@@ -215,6 +215,15 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   };
 }
 
-// Note: generateStaticParams is not needed for dynamic pages
-// All posts are discoverable via sitemap.xml and internal links
-// This ensures Google can crawl all posts from Supabase dynamically
+// Generate static params for better SEO and discoverability
+export async function generateStaticParams() {
+  try {
+    const posts = await getAllPosts();
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    // If there's an error, return empty array - pages will still be generated dynamically
+    return [];
+  }
+}

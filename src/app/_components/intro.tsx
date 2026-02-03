@@ -9,8 +9,10 @@ export function Intro() {
       <h4 className="text-center md:text-left text-lg mt-5 md:pl-8 text-gray-700 dark:text-gray-300">
         Your trusted source for{" "}
         <span className="font-semibold text-blue-600 dark:text-blue-400">finance insights</span>,{" "}
-        <span className="font-semibold text-green-600 dark:text-green-400">market analysis</span>, and{" "}
-        <span className="font-semibold text-purple-600 dark:text-purple-400">investment strategies</span>.
+        <span className="font-semibold text-green-600 dark:text-green-400">market analysis</span>,{" "}
+        <span className="font-semibold text-purple-600 dark:text-purple-400">investment strategies</span>,{" "}
+        <span className="font-semibold text-orange-600 dark:text-orange-400">stock trading</span>, and{" "}
+        <span className="font-semibold text-pink-600 dark:text-pink-400">wealth management</span>.
       </h4>
     </section>
   );

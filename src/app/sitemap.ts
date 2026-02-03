@@ -8,13 +8,20 @@ export const revalidate = 0;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
   
-  const posts = await getAllPosts();
+  let posts;
+  try {
+    posts = await getAllPosts();
+  } catch (error) {
+    console.error('Error fetching posts for sitemap:', error);
+    posts = [];
+  }
   
   // Sort posts by date (newest first) for better indexing priority
   const sortedPosts = [...posts].sort((a, b) => 
     new Date(b.date).getTime() - new Date(a.date).getTime()
   );
   
+  // Generate URLs for all individual posts
   const postUrls = sortedPosts.map((post, index) => ({
     url: `${baseUrl}/posts/${post.slug}`,
     lastModified: new Date(post.date),
@@ -37,13 +44,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/news`,
+      url: `${baseUrl}/news/national`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/case-study`,
+      url: `${baseUrl}/news/international`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/market/national`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/market/international`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/case-study/national`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/case-study/international`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,

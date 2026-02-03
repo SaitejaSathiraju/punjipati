@@ -19,8 +19,20 @@ export const metadata: Metadata = {
     default: 'Punjipati - Finance Insights & Analysis',
     template: '%s | Punjipati Finance'
   },
-  description: `Your trusted source for finance news, market analysis, investment strategies, and financial insights. Stay informed with Punjipati Finance.`,
-  keywords: ['finance', 'investment', 'market analysis', 'financial news', 'personal finance', 'stock market', 'trading', 'economics'],
+  description: `Your trusted source for finance news, market analysis, investment strategies, and financial insights. Stay informed with Punjipati Finance - expert analysis on stocks, bonds, cryptocurrency, real estate, wealth management, and economic trends.`,
+  keywords: [
+    'finance', 'investment', 'market analysis', 'financial news', 'personal finance', 'stock market', 'trading', 'economics',
+    'investment strategies', 'portfolio management', 'wealth management', 'financial planning', 'retirement planning',
+    'stock trading', 'cryptocurrency', 'bitcoin', 'ethereum', 'crypto trading', 'forex trading', 'forex market',
+    'mutual funds', 'ETFs', 'bonds', 'real estate investment', 'REITs', 'commodities', 'gold investment', 'silver investment',
+    'market trends', 'economic analysis', 'financial markets', 'bull market', 'bear market', 'market volatility',
+    'dividend investing', 'value investing', 'growth investing', 'day trading', 'swing trading', 'options trading',
+    'financial advisor', 'investment advisor', 'financial literacy', 'money management', 'budgeting', 'saving money',
+    'debt management', 'credit score', 'mortgage', 'insurance', 'tax planning', 'estate planning',
+    'India finance', 'Indian stock market', 'NSE', 'BSE', 'Sensex', 'Nifty', 'Indian economy', 'RBI', 'Reserve Bank of India',
+    'international finance', 'global markets', 'emerging markets', 'developed markets', 'currency exchange', 'forex rates',
+    'market research', 'financial analysis', 'technical analysis', 'fundamental analysis', 'chart patterns', 'candlestick patterns'
+  ],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
@@ -50,7 +62,7 @@ export const metadata: Metadata = {
     url: '/',
     siteName: 'Punjipati Finance',
     title: 'Punjipati - Finance Insights & Analysis',
-    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights.',
+    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Expert analysis on stocks, cryptocurrency, real estate, wealth management, and global economic trends.',
     images: [{
       url: HOME_OG_IMAGE_URL,
       width: 180,
@@ -61,7 +73,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Punjipati - Finance Insights & Analysis',
-    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights.',
+    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Expert analysis on stocks, cryptocurrency, real estate, wealth management, and global economic trends.',
     images: [HOME_OG_IMAGE_URL],
     creator: '@punjipati',
   },

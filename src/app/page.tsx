@@ -8,8 +8,17 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Punjipati - Finance Insights & Analysis',
-  description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Stay informed with the latest trends in finance, stock market, trading, and economics.',
-  keywords: ['finance', 'investment', 'market analysis', 'financial news', 'personal finance', 'stock market', 'trading', 'economics', 'investment strategies', 'portfolio management', 'risk management'],
+  description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Stay informed with the latest trends in finance, stock market, trading, cryptocurrency, real estate, wealth management, and economics. Expert analysis on Indian and global markets.',
+  keywords: [
+    'finance', 'investment', 'market analysis', 'financial news', 'personal finance', 'stock market', 'trading', 'economics',
+    'investment strategies', 'portfolio management', 'risk management', 'wealth management', 'financial planning',
+    'stock trading', 'cryptocurrency', 'bitcoin', 'crypto trading', 'forex trading', 'mutual funds', 'ETFs', 'bonds',
+    'real estate investment', 'market trends', 'economic analysis', 'financial markets', 'dividend investing',
+    'value investing', 'growth investing', 'day trading', 'financial advisor', 'financial literacy', 'money management',
+    'India finance', 'Indian stock market', 'NSE', 'BSE', 'Sensex', 'Nifty', 'Indian economy', 'RBI',
+    'international finance', 'global markets', 'emerging markets', 'market research', 'financial analysis',
+    'technical analysis', 'fundamental analysis', 'bull market', 'bear market', 'market volatility'
+  ],
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
     types: {
@@ -22,7 +31,7 @@ export const metadata: Metadata = {
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
     siteName: 'Punjipati Finance',
     title: 'Punjipati - Finance Insights & Analysis',
-    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights.',
+    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Expert analysis on stocks, cryptocurrency, real estate, wealth management, and global economic trends.',
     images: [{
       url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`,
       width: 180,
@@ -33,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Punjipati - Finance Insights & Analysis',
-    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights.',
+    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Expert analysis on stocks, cryptocurrency, real estate, wealth management, and global economic trends.',
     images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`],
     creator: '@punjipati',
     site: '@punjipati',
