@@ -12,6 +12,9 @@ const CoverImage = ({ title, src, slug }: Props) => {
   // Use default image if src is null or empty
   const imageSrc = src || "/favicon/apple-touch-icon.png";
   
+  // For hero posts (slug present), use priority and fetchPriority for LCP optimization
+  const isHero = !!slug;
+  
   const image = (
     <Image
       src={imageSrc}
@@ -21,15 +24,17 @@ const CoverImage = ({ title, src, slug }: Props) => {
       })}
       width={1300}
       height={630}
-      priority={!!slug}
-      loading={slug ? "eager" : "lazy"}
+      priority={isHero}
+      fetchPriority={isHero ? "high" : "auto"}
+      loading={isHero ? "eager" : "lazy"}
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      quality={75}
     />
   );
   return (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={`/posts/${slug}`} aria-label={title}>
+        <Link href={`/posts/${slug}`} aria-label={`Read article: ${title}`}>
           {image}
         </Link>
       ) : (

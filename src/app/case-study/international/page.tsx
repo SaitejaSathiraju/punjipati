@@ -7,9 +7,9 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 
 export const metadata: Metadata = {
-  title: 'International Case Studies | Punjipati Finance',
-  description: 'In-depth international case studies on investment strategies, portfolio analysis, risk management, and global market trends. Learn from real-world international finance scenarios.',
-  keywords: ['international case study', 'global case study', 'investment strategies', 'portfolio analysis', 'risk management', 'global market trends', 'international finance case study', 'global investment analysis'],
+  title: 'Global → India Sector Impact | International Case Studies | Punjipati',
+  description: 'How global sector trends, international finance scenarios, and world market movements will impact Indian banking, fintech, manufacturing, and energy sectors over 2026–2030.',
+  keywords: ['global sectors India impact', 'international finance India', 'global trends India sectors', 'world markets India impact', 'international case study India', 'global impact India sectors'],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
@@ -130,7 +130,7 @@ export default async function InternationalCaseStudyPage() {
             initialPosts={initialPosts}
             category="case-study-international"
             title="International Case Studies"
-            description="Explore in-depth international case studies on investment strategies, portfolio analysis, risk management, and global market trends."
+            description="How global sector trends, international finance scenarios, and world market movements will impact Indian banking, fintech, manufacturing, and energy sectors over 2026–2030."
           />
         </Container>
       </main>

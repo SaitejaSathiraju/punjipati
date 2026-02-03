@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllPosts, getPostBySlug } from "@/lib/api";
+import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/api";
 import { CMS_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import Alert from "@/app/_components/alert";
@@ -10,6 +10,7 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import { StructuredData } from "@/app/_components/structured-data";
 import { Breadcrumbs } from "@/app/_components/breadcrumbs";
+import { RelatedPosts } from "@/app/_components/related-posts";
 
 // Make this page dynamic to fetch fresh data from Supabase
 export const dynamic = 'force-dynamic';
@@ -31,6 +32,9 @@ export default async function Post(props: Params) {
   }
 
   const content = await markdownToHtml(post.content || "");
+  
+  // Get related posts for internal linking (programmatic)
+  const relatedPosts = await getRelatedPosts(slug, post.category, 3);
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
   const fullUrl = `${baseUrl}/posts/${slug}`;
@@ -87,6 +91,11 @@ export default async function Post(props: Params) {
             />
             <PostBody content={content} />
           </article>
+          
+          {/* Related Posts - Programmatic Internal Linking */}
+          {relatedPosts.length > 0 && (
+            <RelatedPosts posts={relatedPosts} currentSlug={slug} />
+          )}
         </Container>
       </main>
     </>
@@ -125,7 +134,10 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       : `${baseUrl}${post.ogImage?.url || post.coverImage}`)
     : defaultImage;
   const publishedTime = new Date(post.date).toISOString();
-  const modifiedTime = new Date(post.date).toISOString();
+  // Use updatedAt if available, otherwise fall back to published date
+  const modifiedTime = post.updatedAt 
+    ? new Date(post.updatedAt).toISOString() 
+    : publishedTime;
 
   // Extract keywords from title and content
   const titleWords = title.toLowerCase().split(/\s+/).filter(w => w.length > 3);

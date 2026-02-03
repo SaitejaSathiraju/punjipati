@@ -5,8 +5,27 @@ import { getAllPosts } from '@/lib/api';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+// Helper function to ensure date is not in the future
+function getValidLastModified(date: Date | string): Date {
+  const dateObj = typeof date === 'string' ? new Date(date) : date;
+  const now = new Date();
+  
+  // If date is in the future, use current date instead
+  if (dateObj.getTime() > now.getTime()) {
+    return now;
+  }
+  
+  // If date is invalid, use current date
+  if (isNaN(dateObj.getTime())) {
+    return now;
+  }
+  
+  return dateObj;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+  const now = new Date();
   
   let posts;
   try {
@@ -22,60 +41,82 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
   
   // Generate URLs for all individual posts
-  const postUrls = sortedPosts.map((post, index) => ({
-    url: `${baseUrl}/posts/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'weekly' as const,
-    // Higher priority for newer posts
-    priority: index < 5 ? 0.9 : 0.8,
-  }));
+  // Use updatedAt if available, otherwise fall back to date
+  const postUrls = sortedPosts.map((post, index) => {
+    const lastModified = post.updatedAt || post.date;
+    return {
+      url: `${baseUrl}/posts/${post.slug}`,
+      lastModified: getValidLastModified(lastModified),
+      changeFrequency: 'weekly' as const,
+      // Higher priority for newer posts
+      priority: index < 5 ? 0.9 : 0.8,
+    };
+  });
 
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'daily',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/posts`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/about`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/editorial-policy`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/news/national`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/news/international`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/market/national`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/market/international`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/case-study/national`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/case-study/international`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
     },

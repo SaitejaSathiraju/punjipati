@@ -7,9 +7,9 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 
 export const metadata: Metadata = {
-  title: 'National News | Punjipati Finance',
-  description: 'Latest national finance news, market updates, economic news, and regulatory updates from your country. Stay informed with the latest trends in finance and economics.',
-  keywords: ['national finance news', 'domestic market updates', 'national economic news', 'financial news', 'regulatory updates', 'company news', 'stock market news', 'financial markets'],
+  title: 'India National Finance News | Future Impact Analysis | Punjipati',
+  description: 'How Indian economic events, RBI policy, budget changes, and regulatory updates will impact Indians over the next 1–5 years. Clear, practical analysis of national finance news and future implications.',
+  keywords: ['India national finance news', 'India economic impact', 'RBI policy impact India', 'India budget impact', 'India regulatory changes', 'India finance future', 'India economic future', 'India financial impact'],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
@@ -130,7 +130,7 @@ export default async function NationalNewsPage() {
             initialPosts={initialPosts}
             category="news-national"
             title="National News"
-            description="Stay updated with the latest national finance news, market updates, economic insights, and regulatory changes from your country."
+            description="How Indian economic events, RBI policy, budget changes, and regulatory updates will impact Indians over the next 1–5 years. Clear, practical analysis of future implications."
           />
         </Container>
       </main>

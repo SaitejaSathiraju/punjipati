@@ -67,6 +67,7 @@ async function getPostsFromSupabase(limit?: number): Promise<Post[]> {
       slug: post.slug,
       title: post.title,
       date: post.published_at,
+      updatedAt: post.updated_at || post.published_at,
       coverImage: post.cover_image_url || null,
       author: {
         name: post.author_name,
@@ -116,6 +117,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
             slug: post.slug,
             title: post.title,
             date: post.published_at,
+            updatedAt: post.updated_at || post.published_at,
             coverImage: post.cover_image_url || null,
             author: {
               name: post.author_name,
@@ -202,6 +204,7 @@ export async function getPostsByCategory(
         slug: post.slug,
         title: post.title,
         date: post.published_at,
+        updatedAt: post.updated_at || post.published_at,
         coverImage: post.cover_image_url || null,
         author: {
           name: post.author_name,
@@ -226,4 +229,26 @@ export async function getPostsByCategory(
   const allPosts = await getPostsFromFilesystem();
   const filteredPosts = allPosts.filter(post => post.category === category);
   return limit ? filteredPosts.slice(0, limit) : filteredPosts;
+}
+
+// Get related posts based on category and title similarity
+export async function getRelatedPosts(
+  currentSlug: string,
+  category?: string,
+  limit: number = 5
+): Promise<Post[]> {
+  const allPosts = await getAllPosts();
+  
+  // Filter out current post
+  let relatedPosts = allPosts.filter(post => post.slug !== currentSlug);
+  
+  // Prioritize same category posts
+  if (category) {
+    const sameCategory = relatedPosts.filter(post => post.category === category);
+    const otherCategory = relatedPosts.filter(post => post.category !== category);
+    relatedPosts = [...sameCategory, ...otherCategory];
+  }
+  
+  // Return limited results
+  return relatedPosts.slice(0, limit);
 }

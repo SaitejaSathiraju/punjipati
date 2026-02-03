@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { revalidatePath } from "next/cache";
+import { submitUrlToIndexNow } from "@/lib/indexnow";
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,10 +26,19 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate slug from title
-    const slug = title
+    // Max length: 100 characters to prevent URL truncation
+    // This ensures URLs are crawlable and indexable
+    let slug = title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
+    
+    // Truncate to max 100 characters while preserving word boundaries
+    if (slug.length > 100) {
+      slug = slug.substring(0, 100);
+      // Remove trailing hyphen if present
+      slug = slug.replace(/-+$/, '');
+    }
 
     const supabase = createServerSupabaseClient();
 
@@ -103,6 +113,20 @@ export async function POST(request: NextRequest) {
     revalidatePath("/case-study/international");
     revalidatePath("/sitemap.xml");
     revalidatePath(`/posts/${slug}`);
+
+    // Submit to IndexNow for automatic indexing (non-blocking)
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+    const postUrl = `${baseUrl}/posts/${slug}`;
+    const sitemapUrl = `${baseUrl}/sitemap.xml`;
+    
+    // Submit post URL and sitemap URL to IndexNow (fire and forget)
+    Promise.all([
+      submitUrlToIndexNow(postUrl),
+      submitUrlToIndexNow(sitemapUrl),
+    ]).catch((error) => {
+      // Silently fail - IndexNow is optional
+      console.warn('IndexNow submission failed (non-critical):', error);
+    });
 
     return NextResponse.json(
       {

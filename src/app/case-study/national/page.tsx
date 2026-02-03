@@ -7,9 +7,9 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 
 export const metadata: Metadata = {
-  title: 'National Case Studies | Punjipati Finance',
-  description: 'In-depth national case studies on investment strategies, portfolio analysis, risk management, and market trends. Learn from real-world domestic finance scenarios.',
-  keywords: ['national case study', 'domestic case study', 'investment strategies', 'portfolio analysis', 'risk management', 'market trends', 'finance case study', 'national investment analysis'],
+  title: 'India Sector Deep Dives | Banking, Fintech, MSMEs | Punjipati',
+  description: 'Future impact analysis for banking, fintech, MSMEs, manufacturing, and energy sectors in India. In-depth case studies on how sector trends will impact Indians over 2026–2030.',
+  keywords: ['India banking future', 'India fintech impact', 'India MSME finance', 'India manufacturing future', 'India energy transition', 'India sector analysis', 'India industry future', 'Tier-2 India finance', 'Tier-3 India economy'],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
@@ -130,7 +130,7 @@ export default async function NationalCaseStudyPage() {
             initialPosts={initialPosts}
             category="case-study-national"
             title="National Case Studies"
-            description="Explore in-depth national case studies on investment strategies, portfolio analysis, risk management, and market trends from domestic markets."
+            description="Future impact analysis for banking, fintech, MSMEs, manufacturing, and energy sectors in India. How sector trends will impact Indians over 2026–2030."
           />
         </Container>
       </main>

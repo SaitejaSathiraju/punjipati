@@ -7,9 +7,9 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 
 export const metadata: Metadata = {
-  title: 'National Market | Punjipati Finance',
-  description: 'National market analysis, domestic market trends, local stock market updates, and national economic indicators. Stay informed with your country\'s market performance.',
-  keywords: ['national market', 'domestic market', 'local stock market', 'national market analysis', 'domestic market trends', 'national economic indicators', 'local market updates'],
+  title: 'India Market Futures (2026–2030) | Market Analysis | Punjipati',
+  description: 'How Indian markets, banking, employment, consumption, and savings trends will evolve over 2026–2030. Future-focused analysis of India\'s market performance and economic indicators.',
+  keywords: ['India market future', 'India markets 2026', 'India markets 2027', 'India markets 2028', 'India markets 2029', 'India markets 2030', 'India market trends', 'India market analysis future', 'NSE future', 'BSE future', 'Sensex outlook', 'Nifty future'],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
@@ -130,7 +130,7 @@ export default async function NationalMarketPage() {
             initialPosts={initialPosts}
             category="market-national"
             title="National Market"
-            description="Stay informed with national market analysis, domestic market trends, local stock market updates, and national economic indicators."
+            description="How Indian markets, banking, employment, consumption, and savings trends will evolve over 2026–2030. Future-focused analysis of India's market performance."
           />
         </Container>
       </main>

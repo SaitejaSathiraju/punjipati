@@ -53,7 +53,7 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
         }
       ],
       "datePublished": post.date,
-      "dateModified": post.date,
+      "dateModified": post.updatedAt || post.date,
       "author": {
         "@type": "Person",
         "name": post.author.name,

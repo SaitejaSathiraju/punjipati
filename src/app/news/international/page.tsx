@@ -7,9 +7,9 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 
 export const metadata: Metadata = {
-  title: 'International News | Punjipati Finance',
-  description: 'Latest international finance news, global market updates, world economic news, and international regulatory updates. Stay informed with global finance trends.',
-  keywords: ['international finance news', 'global market updates', 'world economic news', 'international financial news', 'global regulatory updates', 'international company news', 'global stock market news', 'world financial markets'],
+  title: 'Global Events → India Impact | International Finance News | Punjipati',
+  description: 'How US, China, Europe economic events will impact Indian markets, jobs, inflation, and consumption over the next 1–5 years. Clear analysis of global-to-India financial impact.',
+  keywords: ['global impact India', 'US economy India impact', 'China economy India impact', 'Europe economy India impact', 'global events India', 'international finance India impact', 'world economy India', 'global markets India'],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
@@ -130,7 +130,7 @@ export default async function InternationalNewsPage() {
             initialPosts={initialPosts}
             category="news-international"
             title="International News"
-            description="Stay updated with the latest international finance news, global market updates, world economic insights, and international regulatory changes."
+            description="How US, China, Europe economic events will impact Indian markets, jobs, inflation, and consumption over the next 1–5 years. Clear analysis of global-to-India financial impact."
           />
         </Container>
       </main>

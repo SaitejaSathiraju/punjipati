@@ -7,17 +7,16 @@ import { getAllPosts } from "@/lib/api";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Punjipati - Finance Insights & Analysis',
-  description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Stay informed with the latest trends in finance, stock market, trading, cryptocurrency, real estate, wealth management, and economics. Expert analysis on Indian and global markets.',
+  title: 'Punjipati - India-First Financial Impact & Future Intelligence',
+  description: 'Punjipati explains how global & Indian economic events will impact Indians over the next 1–5 years. Clear, practical, and early analysis of RBI policy, budget impacts, market trends, and economic futures for Indian households, investors, and businesses.',
   keywords: [
-    'finance', 'investment', 'market analysis', 'financial news', 'personal finance', 'stock market', 'trading', 'economics',
-    'investment strategies', 'portfolio management', 'risk management', 'wealth management', 'financial planning',
-    'stock trading', 'cryptocurrency', 'bitcoin', 'crypto trading', 'forex trading', 'mutual funds', 'ETFs', 'bonds',
-    'real estate investment', 'market trends', 'economic analysis', 'financial markets', 'dividend investing',
-    'value investing', 'growth investing', 'day trading', 'financial advisor', 'financial literacy', 'money management',
-    'India finance', 'Indian stock market', 'NSE', 'BSE', 'Sensex', 'Nifty', 'Indian economy', 'RBI',
-    'international finance', 'global markets', 'emerging markets', 'market research', 'financial analysis',
-    'technical analysis', 'fundamental analysis', 'bull market', 'bear market', 'market volatility'
+    'India finance', 'Indian economy impact', 'RBI policy explained', 'India budget analysis', 'Indian stock market future',
+    'India inflation impact', 'Indian jobs market', 'India consumption trends', 'Indian banking future', 'India fintech impact',
+    'India MSME finance', 'India manufacturing future', 'India energy transition', 'Tier-2 India finance', 'Tier-3 India economy',
+    'India 2026', 'India 2027', 'India 2028', 'India 2029', 'India 2030', 'India economic future', 'India financial impact',
+    'global impact India', 'US economy India impact', 'China economy India impact', 'Europe economy India impact',
+    'Indian markets analysis', 'NSE future', 'BSE trends', 'Sensex outlook', 'Nifty analysis', 'Indian rupee impact',
+    'India interest rates', 'India inflation future', 'India employment trends', 'India savings patterns', 'India investment future'
   ],
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
@@ -30,8 +29,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
     siteName: 'Punjipati Finance',
-    title: 'Punjipati - Finance Insights & Analysis',
-    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Expert analysis on stocks, cryptocurrency, real estate, wealth management, and global economic trends.',
+    title: 'Punjipati - India-First Financial Impact & Future Intelligence',
+    description: 'Punjipati explains how global & Indian economic events will impact Indians over the next 1–5 years. Clear, practical, and early analysis of RBI policy, budget impacts, and economic futures.',
     images: [{
       url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`,
       width: 180,
@@ -41,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Punjipati - Finance Insights & Analysis',
-    description: 'Your trusted source for finance news, market analysis, investment strategies, and financial insights. Expert analysis on stocks, cryptocurrency, real estate, wealth management, and global economic trends.',
+    title: 'Punjipati - India-First Financial Impact & Future Intelligence',
+    description: 'Punjipati explains how global & Indian economic events will impact Indians over the next 1–5 years. Clear, practical, and early analysis.',
     images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`],
     creator: '@punjipati',
     site: '@punjipati',
@@ -73,6 +72,15 @@ export default async function Index() {
   return (
     <>
       <StructuredData type="website" />
+      {/* Preload hero image for LCP optimization */}
+      {heroPost?.coverImage && (
+        <link
+          rel="preload"
+          as="image"
+          href={heroPost.coverImage}
+          fetchPriority="high"
+        />
+      )}
       <main>
         <Container>
           <Intro />

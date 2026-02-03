@@ -12,6 +12,7 @@ export type Post = {
   slug: string;
   title: string;
   date: string;
+  updatedAt?: string; // Last modification date for SEO
   coverImage: string | null;
   author: Author;
   excerpt: string;

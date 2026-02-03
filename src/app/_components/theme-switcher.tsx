@@ -83,11 +83,19 @@ const Switch = () => {
     const index = modes.indexOf(mode);
     setMode(modes[(index + 1) % modes.length]);
   };
+  const modeLabels: Record<ColorSchemePreference, string> = {
+    system: 'System theme',
+    dark: 'Dark theme',
+    light: 'Light theme',
+  };
+
   return (
     <button
       suppressHydrationWarning
       className={styles.switch}
       onClick={handleModeSwitch}
+      aria-label={`Switch theme: Currently ${modeLabels[mode]}`}
+      title={`Switch theme: Currently ${modeLabels[mode]}`}
     />
   );
 };

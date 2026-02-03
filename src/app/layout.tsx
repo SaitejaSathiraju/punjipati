@@ -16,10 +16,10 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Punjipati - Finance Insights & Analysis',
+    default: 'Punjipati - India-First Financial Impact & Future Intelligence',
     template: '%s | Punjipati Finance'
   },
-  description: `Your trusted source for finance news, market analysis, investment strategies, and financial insights. Stay informed with Punjipati Finance - expert analysis on stocks, bonds, cryptocurrency, real estate, wealth management, and economic trends.`,
+  description: `Punjipati explains how global & Indian economic events will impact Indians over the next 1–5 years. Clear, practical, and early analysis of RBI policy, budget impacts, market trends, and economic futures for Indian households, investors, and businesses.`,
   keywords: [
     'finance', 'investment', 'market analysis', 'financial news', 'personal finance', 'stock market', 'trading', 'economics',
     'investment strategies', 'portfolio management', 'wealth management', 'financial planning', 'retirement planning',
@@ -140,7 +140,7 @@ export default function RootLayout({
                 "width": 512,
                 "height": 512
               },
-              "description": "Your trusted source for finance news, market analysis, investment strategies, and financial insights.",
+              "description": "India-first financial impact and future intelligence. Punjipati explains how global & Indian economic events will impact Indians over the next 1–5 years.",
               "sameAs": [
                 "https://www.instagram.com/punjipati/"
               ],

@@ -7,9 +7,9 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
 
 export const metadata: Metadata = {
-  title: 'International Market | Punjipati Finance',
-  description: 'Global market analysis, international market trends, world stock market updates, and global economic indicators. Stay informed with international market performance.',
-  keywords: ['international market', 'global market', 'world stock market', 'international market analysis', 'global market trends', 'world economic indicators', 'international market updates'],
+  title: 'Global Markets → India Impact | International Market Analysis | Punjipati',
+  description: 'How global market trends, international economic indicators, and world stock market movements will impact India over the next 1–5 years. Clear analysis of international-to-India market impact.',
+  keywords: ['global markets India impact', 'international markets India', 'world markets India', 'global trends India', 'international economy India', 'world economy India impact', 'global indicators India'],
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
@@ -130,7 +130,7 @@ export default async function InternationalMarketPage() {
             initialPosts={initialPosts}
             category="market-international"
             title="International Market"
-            description="Stay informed with global market analysis, international market trends, world stock market updates, and global economic indicators."
+            description="How global market trends, international economic indicators, and world stock market movements will impact India over the next 1–5 years. Clear analysis of international-to-India market impact."
           />
         </Container>
       </main>
