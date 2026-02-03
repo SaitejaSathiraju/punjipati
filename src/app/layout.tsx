@@ -110,7 +110,7 @@ export default function RootLayout({
         <meta name="rating" content="general" />
       </head>
       <body
-        className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
+        className={cn(inter.className, "dark:bg-black dark:text-white")}
       >
         <StructuredData type="website" />
         <script
@@ -130,7 +130,7 @@ export default function RootLayout({
               },
               "description": "Your trusted source for finance news, market analysis, investment strategies, and financial insights.",
               "sameAs": [
-                // Add your social media links here when available
+                "https://www.instagram.com/punjipati/"
               ],
               "contactPoint": {
                 "@type": "ContactPoint",

@@ -12,7 +12,7 @@ type BreadcrumbsProps = {
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav aria-label="Breadcrumb" className="mb-8">
-      <ol className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+      <ol className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300">
         {items.map((item, index) => (
           <li key={index} className="flex items-center">
             {index > 0 && <span className="mx-2">/</span>}
@@ -34,6 +34,10 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
     </nav>
   );
 }
+
+
+
+
 
 
 

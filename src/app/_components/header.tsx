@@ -6,7 +6,7 @@ const Header = () => {
       <Link href="/" className="hover:underline text-blue-600 dark:text-blue-400">
         Punjipati
       </Link>
-      <span className="text-gray-600 dark:text-gray-400 ml-2">Finance</span>
+      <span className="text-gray-600 dark:text-gray-300 ml-2">Finance</span>
     </h2>
   );
 };

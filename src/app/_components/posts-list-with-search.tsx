@@ -69,7 +69,7 @@ export function PostsListWithSearch({ initialPosts, category, title = "Posts", d
         {title}
       </h1>
       {description && (
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-12">
+        <p className="text-xl text-gray-600 dark:text-gray-300 mb-12">
           {description}
         </p>
       )}
@@ -128,7 +128,7 @@ export function PostsListWithSearch({ initialPosts, category, title = "Posts", d
         </>
       ) : (
         <div className="text-center py-16">
-          <p className="text-xl text-gray-600 dark:text-gray-400">
+          <p className="text-xl text-gray-600 dark:text-gray-300">
             {searchQuery ? 'No posts found matching your search.' : `No ${title.toLowerCase()} yet. Check back soon for updates.`}
           </p>
         </div>

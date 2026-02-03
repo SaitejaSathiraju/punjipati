@@ -116,9 +116,7 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
         "url": `${baseUrl}/favicon/favicon.png`
       },
       "sameAs": [
-        // Add your social media links here
-        // "https://twitter.com/punjipati",
-        // "https://linkedin.com/company/punjipati"
+        "https://www.instagram.com/punjipati/"
       ]
     },
     "inLanguage": "en-US",

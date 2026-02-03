@@ -81,7 +81,7 @@ export default async function Index() {
             </>
           ) : (
             <div className="text-center py-16">
-              <p className="text-xl text-gray-600 dark:text-gray-400">
+              <p className="text-xl text-gray-600 dark:text-gray-300">
                 No posts yet. Create your first post from the{" "}
                 <a href="/admin-secure-punjipati-2024/login" className="text-blue-600 hover:underline">
                   Admin Panel
