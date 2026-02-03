@@ -11,8 +11,10 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'),
+  metadataBase: new URL(baseUrl),
   title: {
     default: 'Punjipati - Finance Insights & Analysis',
     template: '%s | Punjipati Finance'
@@ -22,6 +24,21 @@ export const metadata: Metadata = {
   authors: [{ name: 'Punjipati Finance Team' }],
   creator: 'Punjipati Finance',
   publisher: 'Punjipati Finance',
+  icons: {
+    icon: [
+      { url: '/favicon/favicon.ico', sizes: 'any' },
+      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon/favicon.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/favicon/safari-pinned-tab.svg', color: '#000000' },
+    ],
+  },
+  manifest: '/favicon/site.webmanifest',
   formatDetection: {
     email: false,
     address: false,
@@ -77,42 +94,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
-        <link
-          rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
-          color="#000000"
-        />
-        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" href="/favicon/favicon.png" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="msapplication-config"
           content="/favicon/browserconfig.xml"
         />
         <meta name="theme-color" content="#000" />
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`} />
-        <meta property="og:image:width" content="180" />
-        <meta property="og:image:height" content="180" />
-        <meta property="og:image:type" content="image/png" />
-        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`} />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Punjipati Finance RSS Feed" />
         <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="Punjipati Finance Atom Feed" />
         <meta name="geo.region" content="US" />
@@ -134,8 +121,13 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "Punjipati Finance",
               "alternateName": "Punjipati",
-              "url": process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
-              "logo": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/favicon.png`,
+              "url": baseUrl,
+              "logo": {
+                "@type": "ImageObject",
+                "url": `${baseUrl}/favicon/favicon.png`,
+                "width": 512,
+                "height": 512
+              },
               "description": "Your trusted source for finance news, market analysis, investment strategies, and financial insights.",
               "sameAs": [
                 // Add your social media links here when available
@@ -146,6 +138,80 @@ export default function RootLayout({
                 "areaServed": "Worldwide",
                 "availableLanguage": ["English"]
               }
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SiteNavigationElement",
+              "name": "Main Navigation",
+              "url": baseUrl,
+              "hasPart": [
+                {
+                  "@type": "SiteNavigationElement",
+                  "name": "Home",
+                  "url": baseUrl
+                },
+                {
+                  "@type": "SiteNavigationElement",
+                  "name": "News",
+                  "url": `${baseUrl}/news/national`,
+                  "hasPart": [
+                    {
+                      "@type": "SiteNavigationElement",
+                      "name": "National News",
+                      "url": `${baseUrl}/news/national`
+                    },
+                    {
+                      "@type": "SiteNavigationElement",
+                      "name": "International News",
+                      "url": `${baseUrl}/news/international`
+                    }
+                  ]
+                },
+                {
+                  "@type": "SiteNavigationElement",
+                  "name": "Market",
+                  "url": `${baseUrl}/market/national`,
+                  "hasPart": [
+                    {
+                      "@type": "SiteNavigationElement",
+                      "name": "National Market",
+                      "url": `${baseUrl}/market/national`
+                    },
+                    {
+                      "@type": "SiteNavigationElement",
+                      "name": "International Market",
+                      "url": `${baseUrl}/market/international`
+                    }
+                  ]
+                },
+                {
+                  "@type": "SiteNavigationElement",
+                  "name": "Case Study",
+                  "url": `${baseUrl}/case-study/national`,
+                  "hasPart": [
+                    {
+                      "@type": "SiteNavigationElement",
+                      "name": "National Case Study",
+                      "url": `${baseUrl}/case-study/national`
+                    },
+                    {
+                      "@type": "SiteNavigationElement",
+                      "name": "International Case Study",
+                      "url": `${baseUrl}/case-study/international`
+                    }
+                  ]
+                },
+                {
+                  "@type": "SiteNavigationElement",
+                  "name": "All Posts",
+                  "url": `${baseUrl}/posts`
+                }
+              ]
             })
           }}
         />

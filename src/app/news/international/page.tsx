@@ -88,12 +88,41 @@ export default async function InternationalNewsPage() {
     }
   };
 
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": baseUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "News",
+        "item": `${baseUrl}/news/international`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "International News",
+        "item": `${baseUrl}/news/international`
+      }
+    ]
+  };
+
   return (
     <>
       <StructuredData type="website" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
       <main>
         <Container>
@@ -108,4 +137,8 @@ export default async function InternationalNewsPage() {
     </>
   );
 }
+
+
+
+
 
