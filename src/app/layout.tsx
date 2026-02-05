@@ -38,6 +38,7 @@ export const metadata: Metadata = {
   publisher: 'Punjipati Finance',
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon/favicon.ico', sizes: 'any' },
       { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
@@ -48,6 +49,7 @@ export const metadata: Metadata = {
     ],
     other: [
       { rel: 'mask-icon', url: '/favicon/safari-pinned-tab.svg', color: '#000000' },
+      { rel: 'shortcut icon', url: '/favicon.ico' },
     ],
   },
   manifest: '/favicon/site.webmanifest',
