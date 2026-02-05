@@ -60,8 +60,9 @@ ${newsPosts.map(post => {
 
   return new NextResponse(newsSitemap, {
     headers: {
-      'Content-Type': 'application/xml',
-      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, s-maxage=1800, stale-while-revalidate=3600', // More frequent updates for news
+      'X-Robots-Tag': 'noindex', // News sitemap itself shouldn't be indexed
     },
   });
 }

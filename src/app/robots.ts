@@ -49,8 +49,9 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: [
-      `${baseUrl}/sitemap.xml`,
-      `${baseUrl}/news-sitemap.xml`, // Google News sitemap for faster indexing
+      `${baseUrl}/sitemap-index.xml`, // Sitemap index (references all sitemaps)
+      `${baseUrl}/sitemap.xml`, // Main sitemap (all pages)
+      `${baseUrl}/news-sitemap.xml`, // Google News sitemap (prioritized for fast indexing)
     ],
   };
 }

@@ -123,7 +123,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Punjipati Finance RSS Feed" />
         <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="Punjipati Finance Atom Feed" />
-        {/* Google News sitemap reference for faster indexing */}
+        {/* Sitemap references for faster indexing - Google prioritizes news sitemap */}
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" title="Sitemap" />
         <link rel="sitemap" type="application/xml" href="/news-sitemap.xml" title="Google News Sitemap" />
         <meta name="geo.region" content="US" />
         <meta name="geo.placename" content="United States" />
