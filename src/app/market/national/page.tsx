@@ -58,8 +58,8 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function NationalMarketPage() {
-  // Fetch only 5 posts initially for better performance
-  const initialPosts = await getPostsByCategory('market-national', 5);
+  // Fetch ALL posts for better SEO - Google needs to see all posts in HTML
+  const initialPosts = await getPostsByCategory('market-national');
 
   const collectionStructuredData = {
     "@context": "https://schema.org",

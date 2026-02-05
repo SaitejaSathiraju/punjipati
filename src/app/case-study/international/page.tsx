@@ -58,8 +58,8 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function InternationalCaseStudyPage() {
-  // Fetch only 5 posts initially for better performance
-  const initialPosts = await getPostsByCategory('case-study-international', 5);
+  // Fetch ALL posts for better SEO - Google needs to see all posts in HTML
+  const initialPosts = await getPostsByCategory('case-study-international');
 
   const collectionStructuredData = {
     "@context": "https://schema.org",
