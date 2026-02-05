@@ -34,7 +34,10 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
       ...titleWords
     ];
 
-    const articleStructuredData = {
+    // Enhanced NewsArticle schema for faster Google indexing
+    const isNewsArticle = articleType === 'NewsArticle';
+    
+    const articleStructuredData: any = {
       "@context": "https://schema.org",
       "@type": articleType,
       "headline": post.title,
@@ -76,12 +79,33 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
         "@id": `${baseUrl}/posts/${post.slug}`
       },
       "articleSection": post.category?.includes('case-study') ? 'Case Study' : post.category?.includes('market') ? 'Market' : post.category?.includes('news') ? 'News' : 'Finance',
-      "keywords": keywords,
+      "keywords": keywords.join(', '),
       "inLanguage": "en-US",
       "wordCount": post.content?.split(/\s+/).length || 0,
       "timeRequired": `PT${Math.ceil((post.content?.split(/\s+/).length || 0) / 200)}M`,
       "category": post.category || 'Finance'
     };
+    
+    // Add NewsArticle-specific fields for faster indexing
+    if (isNewsArticle) {
+      articleStructuredData["dateline"] = post.category?.includes('national') ? 'India' : 'Global';
+      articleStructuredData["articleBody"] = post.excerpt;
+      // Add news-specific publication info
+      articleStructuredData["publisher"] = {
+        "@type": "NewsMediaOrganization",
+        "name": "Punjipati Finance",
+        "url": baseUrl,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${baseUrl}/favicon/favicon.png`,
+          "width": 512,
+          "height": 512
+        },
+        "sameAs": [
+          "https://www.instagram.com/punjipati/"
+        ]
+      };
+    }
 
     return (
       <script

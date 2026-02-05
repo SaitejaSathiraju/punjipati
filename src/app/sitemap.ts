@@ -42,14 +42,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   
   // Generate URLs for all individual posts
   // Use updatedAt if available, otherwise fall back to date
+  // News articles get higher priority and more frequent updates
   const postUrls = sortedPosts.map((post, index) => {
     const lastModified = post.updatedAt || post.date;
+    const isNews = post.category?.includes('news') || post.category?.includes('market');
+    const postDate = new Date(post.date);
+    const daysSincePublished = (now.getTime() - postDate.getTime()) / (1000 * 60 * 60 * 24);
+    
     return {
       url: `${baseUrl}/posts/${post.slug}`,
       lastModified: getValidLastModified(lastModified),
-      changeFrequency: 'weekly' as const,
-      // Higher priority for newer posts
-      priority: index < 5 ? 0.9 : 0.8,
+      // News articles update daily, others weekly
+      changeFrequency: (isNews && daysSincePublished < 7) ? 'daily' as const : 'weekly' as const,
+      // Higher priority for newer posts and news articles
+      priority: (isNews && daysSincePublished < 7) ? 0.95 : index < 5 ? 0.9 : 0.8,
     };
   });
 
