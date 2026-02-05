@@ -64,8 +64,18 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function Index() {
-  // Fetch more posts for better SEO - show top 10 on homepage
-  const latestPosts = await getAllPosts(10);
+  // Fetch newest posts - sorted by date descending (newest first)
+  const allPosts = await getAllPosts();
+  
+  // Explicitly sort by date to ensure newest first (in case API doesn't sort)
+  const sortedPosts = [...allPosts].sort((a, b) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    return dateB - dateA; // Descending order (newest first)
+  });
+  
+  // Show top 10 newest articles on homepage
+  const latestPosts = sortedPosts.slice(0, 10);
   const heroPost = latestPosts[0];
   const morePosts = latestPosts.slice(1);
 
