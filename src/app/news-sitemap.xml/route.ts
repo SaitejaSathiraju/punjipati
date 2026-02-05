@@ -16,17 +16,16 @@ export async function GET() {
     posts = [];
   }
   
-  // Filter only news articles (published in last 2 days for Google News)
-  const twoDaysAgo = new Date();
-  twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+  // Include ALL news and market articles (not just last 2 days)
+  // Filter to ensure dates are valid (not in future)
+  const now = new Date();
   
   const newsPosts = posts
     .filter(post => {
       const postDate = new Date(post.date);
       return (
         (post.category?.includes('news') || post.category?.includes('market')) &&
-        postDate >= twoDaysAgo &&
-        postDate <= new Date() // Not in future
+        postDate <= now // Not in future
       );
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
