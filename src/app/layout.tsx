@@ -38,18 +38,18 @@ export const metadata: Metadata = {
   publisher: 'Punjipati Finance',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon/favicon.ico', sizes: 'any' },
-      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon/favicon.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon.ico?v=2', sizes: 'any' },
+      { url: '/favicon/favicon.ico?v=2', sizes: 'any' },
+      { url: '/favicon/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon/favicon.png?v=2', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/favicon/apple-touch-icon.png?v=2', sizes: '180x180', type: 'image/png' },
     ],
     other: [
       { rel: 'mask-icon', url: '/favicon/safari-pinned-tab.svg', color: '#000000' },
-      { rel: 'shortcut icon', url: '/favicon.ico' },
+      { rel: 'shortcut icon', url: '/favicon.ico?v=2' },
     ],
   },
   manifest: '/favicon/site.webmanifest',
@@ -108,13 +108,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Explicit favicon links for Google - must be in head section */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
+        {/* Explicit favicon links for Google - must be in head section - ORDER MATTERS */}
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" href="/favicon/favicon.ico?v=2" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico?v=2" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=2" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=2" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/favicon/favicon.png?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png?v=2" />
+        <link rel="manifest" href="/favicon/site.webmanifest?v=2" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="msapplication-config"
