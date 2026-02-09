@@ -36,7 +36,7 @@ export default async function Post(props: Params) {
   // Get related posts for internal linking (programmatic)
   const relatedPosts = await getRelatedPosts(slug, post.category, 3);
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
   const fullUrl = `${baseUrl}/posts/${slug}`;
 
   return (
@@ -123,7 +123,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     return notFound();
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
   const title = post.title;
   const description = post.excerpt;
   const url = `${baseUrl}/posts/${slug}`;

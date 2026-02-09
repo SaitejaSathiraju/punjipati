@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
     revalidatePath(`/posts/${slug}`);
 
     // Submit to IndexNow for automatic indexing (non-blocking)
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
     const postUrl = `${baseUrl}/posts/${slug}`;
     const sitemapUrl = `${baseUrl}/sitemap.xml`;
     

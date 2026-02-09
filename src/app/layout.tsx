@@ -11,7 +11,8 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+// Use www version for consistency with Google Search Console
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

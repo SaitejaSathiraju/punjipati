@@ -103,3 +103,11 @@ export async function submitUrlToIndexNow(url: string, key?: string): Promise<bo
   return submitToIndexNow([url], key);
 }
 
+
+
+
+
+
+
+
+

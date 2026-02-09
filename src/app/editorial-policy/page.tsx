@@ -2,7 +2,7 @@ import Container from "@/app/_components/container";
 import { StructuredData } from "@/app/_components/structured-data";
 import type { Metadata } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
 
 export const metadata: Metadata = {
   title: 'Editorial Policy | Punjipati Finance',
@@ -172,4 +172,12 @@ export default function EditorialPolicyPage() {
     </>
   );
 }
+
+
+
+
+
+
+
+
 

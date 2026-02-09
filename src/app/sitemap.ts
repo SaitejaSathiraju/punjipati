@@ -24,7 +24,7 @@ function getValidLastModified(date: Date | string): Date {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
   const now = new Date();
   
   let posts;

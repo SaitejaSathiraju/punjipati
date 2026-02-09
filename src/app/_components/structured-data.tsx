@@ -7,7 +7,7 @@ type StructuredDataProps = {
 
 export function StructuredData({ post, type = 'website' }: StructuredDataProps) {
   if (type === 'article' && post) {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
     
     // Determine article type based on category
     const articleType = post.category?.includes('case-study')
@@ -115,7 +115,7 @@ export function StructuredData({ post, type = 'website' }: StructuredDataProps) 
     );
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
   
   const websiteStructuredData = {
     "@context": "https://schema.org",

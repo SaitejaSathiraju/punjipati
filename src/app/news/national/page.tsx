@@ -4,7 +4,7 @@ import { StructuredData } from "@/app/_components/structured-data";
 import { getPostsByCategory } from "@/lib/api";
 import type { Metadata } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
 
 export const metadata: Metadata = {
   title: 'India National Finance News | Future Impact Analysis | Punjipati',

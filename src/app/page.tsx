@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     'India interest rates', 'India inflation future', 'India employment trends', 'India savings patterns', 'India investment future'
   ],
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com'}/`,
     types: {
       'application/rss+xml': '/feed.xml',
     },
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com',
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com'}/`,
     siteName: 'Punjipati Finance',
     title: 'Punjipati - India-First Financial Impact & Future Intelligence',
     description: 'Punjipati explains how global & Indian economic events will impact Indians over the next 1–5 years. Clear, practical, and early analysis of RBI policy, budget impacts, and economic futures.',
     images: [{
-      url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com'}/favicon/apple-touch-icon.png`,
       width: 180,
       height: 180,
       alt: 'Punjipati Finance - Finance Insights & Analysis',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Punjipati - India-First Financial Impact & Future Intelligence',
     description: 'Punjipati explains how global & Indian economic events will impact Indians over the next 1–5 years. Clear, practical, and early analysis.',
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://punjipati.com'}/favicon/apple-touch-icon.png`],
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com'}/favicon/apple-touch-icon.png`],
     creator: '@punjipati',
     site: '@punjipati',
   },
