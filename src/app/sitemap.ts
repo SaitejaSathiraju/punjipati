@@ -61,7 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`, // Homepage with trailing slash to match canonical
       lastModified: now,
       changeFrequency: 'daily',
       priority: 1.0,

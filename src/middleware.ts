@@ -3,6 +3,20 @@ import type { NextRequest } from 'next/server';
 import { validateSession } from '@/lib/auth';
 
 export async function middleware(req: NextRequest) {
+  const url = req.nextUrl;
+  const hostname = req.headers.get('host') || '';
+  
+  // Redirect non-www to www in production (but not localhost)
+  if (
+    process.env.NODE_ENV === 'production' &&
+    hostname === 'punjipati.com' &&
+    !hostname.startsWith('www.')
+  ) {
+    const newUrl = url.clone();
+    newUrl.hostname = 'www.punjipati.com';
+    return NextResponse.redirect(newUrl, 301); // Permanent redirect
+  }
+  
   const response = NextResponse.next();
 
   // Add security headers for all routes
@@ -55,7 +69,14 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    '/admin-secure-punjipati-2024/:path*',
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 };
 
