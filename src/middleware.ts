@@ -9,8 +9,7 @@ export async function middleware(req: NextRequest) {
   // Redirect non-www to www in production (but not localhost)
   if (
     process.env.NODE_ENV === 'production' &&
-    hostname === 'punjipati.com' &&
-    !hostname.startsWith('www.')
+    hostname === 'punjipati.com'
   ) {
     const newUrl = url.clone();
     newUrl.hostname = 'www.punjipati.com';
