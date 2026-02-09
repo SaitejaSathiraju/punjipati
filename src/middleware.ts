@@ -43,7 +43,8 @@ export async function middleware(req: NextRequest) {
 
   // Cross-Origin-Opener-Policy
   response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
-  response.headers.set('Cross-Origin-Embedder-Policy', 'require-corp');
+  // Removed Cross-Origin-Embedder-Policy: require-corp as it's too strict and blocks same-origin images
+  // COEP is mainly needed for SharedArrayBuffer and advanced features we don't use
 
   // Check if the route is an admin route
   if (req.nextUrl.pathname.startsWith('/admin-secure-punjipati-2024')) {
