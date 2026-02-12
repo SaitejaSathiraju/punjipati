@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/api';
+import type { Post } from '@/interfaces/post';
 
 // Make sitemap dynamic to always fetch latest posts from Supabase
 export const dynamic = 'force-dynamic';
@@ -27,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
   const now = new Date();
   
-  let posts;
+  let posts: Post[];
   try {
     posts = await getAllPosts();
   } catch (error) {
@@ -52,10 +53,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return {
       url: `${baseUrl}/posts/${post.slug}`,
       lastModified: getValidLastModified(lastModified),
-      // News articles update daily, others weekly
       changeFrequency: (isNews && daysSincePublished < 7) ? 'daily' as const : 'weekly' as const,
-      // Higher priority for newer posts and news articles
-      priority: (isNews && daysSincePublished < 7) ? 0.95 : index < 5 ? 0.9 : 0.8,
+      // All articles high priority so Google is more likely to index every page
+      priority: (isNews && daysSincePublished < 7) ? 0.95 : index < 10 ? 0.9 : 0.85,
     };
   });
 
