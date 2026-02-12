@@ -3,6 +3,7 @@ import { Navbar } from "@/app/_components/navbar";
 import { StructuredData } from "@/app/_components/structured-data";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import cn from "classnames";
 import { ThemeSwitcher } from "./_components/theme-switcher";
@@ -109,6 +110,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google tag (gtag.js) - load first for analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KM3BXFR0ZG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KM3BXFR0ZG');
+          `}
+        </Script>
         {/* Explicit favicon links for Google - must be in head section - ORDER MATTERS */}
         <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
         <link rel="icon" href="/favicon/favicon.ico?v=2" sizes="any" />

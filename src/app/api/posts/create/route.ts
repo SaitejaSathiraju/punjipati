@@ -112,6 +112,7 @@ export async function POST(request: NextRequest) {
     revalidatePath("/case-study/national");
     revalidatePath("/case-study/international");
     revalidatePath("/sitemap.xml");
+    revalidatePath("/sitemap-posts.xml");
     revalidatePath(`/posts/${slug}`);
 
     // Submit to IndexNow for automatic indexing (non-blocking)
@@ -119,13 +120,15 @@ export async function POST(request: NextRequest) {
     const postUrl = `${baseUrl}/posts/${slug}`;
     const sitemapUrl = `${baseUrl}/sitemap.xml`;
     
-    // Submit post URL and sitemap URL to IndexNow (fire and forget)
+    // Notify search engines (fire and forget)
     Promise.all([
       submitUrlToIndexNow(postUrl),
       submitUrlToIndexNow(sitemapUrl),
+      // Ping Google so it re-crawls sitemaps and discovers the new article
+      fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(baseUrl + '/sitemap.xml')}`).catch(() => {}),
+      fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(baseUrl + '/sitemap-posts.xml')}`).catch(() => {}),
     ]).catch((error) => {
-      // Silently fail - IndexNow is optional
-      console.warn('IndexNow submission failed (non-critical):', error);
+      console.warn('Search engine ping failed (non-critical):', error);
     });
 
     return NextResponse.json(

@@ -6,14 +6,15 @@ export async function middleware(req: NextRequest) {
   const url = req.nextUrl;
   const hostname = req.headers.get('host') || '';
   
-  // Redirect non-www to www in production (but not localhost)
+  // Redirect non-www to https www in one hop (avoids "Page with redirect" chain in GSC)
   if (
     process.env.NODE_ENV === 'production' &&
     hostname === 'punjipati.com'
   ) {
     const newUrl = url.clone();
+    newUrl.protocol = 'https:';
     newUrl.hostname = 'www.punjipati.com';
-    return NextResponse.redirect(newUrl, 301); // Permanent redirect
+    return NextResponse.redirect(newUrl, 301);
   }
   
   const response = NextResponse.next();
