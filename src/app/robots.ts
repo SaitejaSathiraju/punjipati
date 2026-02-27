@@ -4,7 +4,7 @@ export default function robots(): MetadataRoute.Robots {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.punjipati.com';
   
   const allowPaths = ['/', '/posts', '/posts/*', '/news', '/news/*', '/market', '/market/*', '/case-study', '/case-study/*'];
-  const disallowPaths = ['/api/', '/admin/', '/admin-secure-punjipati-2024/'];
+  const disallowPaths = ['/api/', '/admin/', '/admin-secure-punjipati-2024/', '/admin-secure-punjipati-2024/login'];
 
   return {
     rules: [
